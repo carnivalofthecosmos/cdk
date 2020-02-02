@@ -1,0 +1,11 @@
+{
+  "@aws-cdk/core:enableStackNameDuplicates": "true",
+  "aws-cdk:enableDiffNoFail": "true",
+  "zoneInfo": { 
+    "baseTld": "xoxo.tld"
+  },
+  "accountType": "ci",
+  "project": "test-account" ,
+  "application": "account-base",
+  "version": "1"
+}
