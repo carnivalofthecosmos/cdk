@@ -8,7 +8,10 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "format": "prettier --write \"lib/**/*.ts\" \"bin/**/*.ts\"",
+    "lint": "./node_modules/.bin/eslint \"lib/**/*.ts\" \"bin/**/*.ts\"",
+    "tslint": "tslint -p tsconfig.json"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.22.0",

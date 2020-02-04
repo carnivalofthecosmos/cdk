@@ -1,1 +1,1 @@
-export { AccountBase, AccountBaseProps } from "./AccountBase"
+export { AccountBase, AccountBaseProps } from './AccountBase';

@@ -1,5 +1,5 @@
-import { Construct } from "@aws-cdk/core";
-import { HostedZone, IHostedZone } from "@aws-cdk/aws-route53";
+import { Construct } from '@aws-cdk/core';
+import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
 
 export class CoreDns extends Construct {
   readonly rootZone: IHostedZone;
