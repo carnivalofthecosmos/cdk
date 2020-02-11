@@ -5,10 +5,12 @@ export interface GalaxyStackProps extends StackProps {}
 
 export class GalaxyStack extends Stack {
   readonly cosmos: CosmosStack;
+  readonly account: string;
 
-  constructor(cosmos: CosmosStack, id: string, props?: GalaxyStackProps) {
-    super(cosmos.app, `Cosmos-Galaxy-${id}`, props);
+  constructor(cosmos: CosmosStack, account: string, props?: GalaxyStackProps) {
+    super(cosmos.app, `Cosmos-${account}-Galaxy`, props);
 
     this.cosmos = cosmos;
+    this.account = account;
   }
 }
