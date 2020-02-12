@@ -1,0 +1,1911 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "Core": {
+        "id": "Core",
+        "path": "Core",
+        "children": {
+          "SharedZone": {
+            "id": "SharedZone",
+            "path": "Core/SharedZone",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core/SharedZone/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Route53::HostedZone",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "devops.cosmoscarnival.com."
+                  }
+                }
+              }
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "Core/Exports",
+            "children": {
+              "Output{\"Ref\":\"SharedZone2FCC456C\"}": {
+                "id": "Output{\"Ref\":\"SharedZone2FCC456C\"}",
+                "path": "Core/Exports/Output{\"Ref\":\"SharedZone2FCC456C\"}"
+              }
+            }
+          }
+        }
+      },
+      "Core-Mgt-Account": {
+        "id": "Core-Mgt-Account",
+        "path": "Core-Mgt-Account",
+        "children": {
+          "SharedVpc": {
+            "id": "SharedVpc",
+            "path": "Core-Mgt-Account/SharedVpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Account/SharedVpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/22",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "Core-Mgt-Account/SharedVpc"
+                      }
+                    ]
+                  }
+                }
+              },
+              "CoreSubnet1": {
+                "id": "CoreSubnet1",
+                "path": "Core-Mgt-Account/SharedVpc/CoreSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.0/26",
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "Core-Mgt-Account/SharedVpc/CoreSubnet1"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Core"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet1/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "Core-Mgt-Account/SharedVpc/CoreSubnet1"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SharedVpcCoreSubnet1RouteTableB70AECC1"
+                        },
+                        "subnetId": {
+                          "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "CoreSubnet2": {
+                "id": "CoreSubnet2",
+                "path": "Core-Mgt-Account/SharedVpc/CoreSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.64/26",
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "Core-Mgt-Account/SharedVpc/CoreSubnet2"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "Core"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet2/Acl"
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "Core-Mgt-Account/SharedVpc/CoreSubnet2"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "Core-Mgt-Account/SharedVpc/CoreSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "SharedVpcCoreSubnet2RouteTableCB955C1D"
+                        },
+                        "subnetId": {
+                          "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "S3Gateway": {
+                "id": "S3Gateway",
+                "path": "Core-Mgt-Account/SharedVpc/S3Gateway",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/S3Gateway/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".s3"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "routeTableIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1RouteTableB70AECC1"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2RouteTableCB955C1D"
+                          }
+                        ],
+                        "vpcEndpointType": "Gateway"
+                      }
+                    }
+                  }
+                }
+              },
+              "EcsEndpoint": {
+                "id": "EcsEndpoint",
+                "path": "Core-Mgt-Account/SharedVpc/EcsEndpoint",
+                "children": {
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsEndpoint/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Account/SharedVpc/EcsEndpoint/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Account/SharedVpc/EcsEndpoint/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": {
+                                  "Fn::GetAtt": [
+                                    "SharedVpc96F0F614",
+                                    "CidrBlock"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "fromPort": 443,
+                                "toPort": 443,
+                                "description": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "from ",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SharedVpc96F0F614",
+                                          "CidrBlock"
+                                        ]
+                                      },
+                                      ":443"
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Account/SharedVpc"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "SharedVpc96F0F614"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsEndpoint/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".ecs"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "privateDnsEnabled": true,
+                        "securityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "SharedVpcEcsEndpointSecurityGroup5BBB3ABF",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnetIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                          }
+                        ],
+                        "vpcEndpointType": "Interface"
+                      }
+                    }
+                  }
+                }
+              },
+              "EcsAgentEndpoint": {
+                "id": "EcsAgentEndpoint",
+                "path": "Core-Mgt-Account/SharedVpc/EcsAgentEndpoint",
+                "children": {
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": {
+                                  "Fn::GetAtt": [
+                                    "SharedVpc96F0F614",
+                                    "CidrBlock"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "fromPort": 443,
+                                "toPort": 443,
+                                "description": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "from ",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SharedVpc96F0F614",
+                                          "CidrBlock"
+                                        ]
+                                      },
+                                      ":443"
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Account/SharedVpc"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "SharedVpc96F0F614"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".ecs-agent"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "privateDnsEnabled": true,
+                        "securityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "SharedVpcEcsAgentEndpointSecurityGroupF4FDE620",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnetIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                          }
+                        ],
+                        "vpcEndpointType": "Interface"
+                      }
+                    }
+                  }
+                }
+              },
+              "EcsTelemetryEndpoint": {
+                "id": "EcsTelemetryEndpoint",
+                "path": "Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint",
+                "children": {
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": {
+                                  "Fn::GetAtt": [
+                                    "SharedVpc96F0F614",
+                                    "CidrBlock"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "fromPort": 443,
+                                "toPort": 443,
+                                "description": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "from ",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SharedVpc96F0F614",
+                                          "CidrBlock"
+                                        ]
+                                      },
+                                      ":443"
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Account/SharedVpc"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "SharedVpc96F0F614"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".ecs-telemetry"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "privateDnsEnabled": true,
+                        "securityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "SharedVpcEcsTelemetryEndpointSecurityGroup628281C3",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnetIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                          }
+                        ],
+                        "vpcEndpointType": "Interface"
+                      }
+                    }
+                  }
+                }
+              },
+              "EcrEndpoint": {
+                "id": "EcrEndpoint",
+                "path": "Core-Mgt-Account/SharedVpc/EcrEndpoint",
+                "children": {
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "Core-Mgt-Account/SharedVpc/EcrEndpoint/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Account/SharedVpc/EcrEndpoint/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Account/SharedVpc/EcrEndpoint/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": {
+                                  "Fn::GetAtt": [
+                                    "SharedVpc96F0F614",
+                                    "CidrBlock"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "fromPort": 443,
+                                "toPort": 443,
+                                "description": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "from ",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SharedVpc96F0F614",
+                                          "CidrBlock"
+                                        ]
+                                      },
+                                      ":443"
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Account/SharedVpc"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "SharedVpc96F0F614"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/EcrEndpoint/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".ecr.api"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "privateDnsEnabled": true,
+                        "securityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "SharedVpcEcrEndpointSecurityGroup2D339FA4",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnetIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                          }
+                        ],
+                        "vpcEndpointType": "Interface"
+                      }
+                    }
+                  }
+                }
+              },
+              "EcrDockerEndpoint": {
+                "id": "EcrDockerEndpoint",
+                "path": "Core-Mgt-Account/SharedVpc/EcrDockerEndpoint",
+                "children": {
+                  "SecurityGroup": {
+                    "id": "SecurityGroup",
+                    "path": "Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/SecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/SecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/SecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "securityGroupIngress": [
+                              {
+                                "cidrIp": {
+                                  "Fn::GetAtt": [
+                                    "SharedVpc96F0F614",
+                                    "CidrBlock"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "fromPort": 443,
+                                "toPort": 443,
+                                "description": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "from ",
+                                      {
+                                        "Fn::GetAtt": [
+                                          "SharedVpc96F0F614",
+                                          "CidrBlock"
+                                        ]
+                                      },
+                                      ":443"
+                                    ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Account/SharedVpc"
+                              }
+                            ],
+                            "vpcId": {
+                              "Ref": "SharedVpc96F0F614"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCEndpoint",
+                      "aws:cdk:cloudformation:props": {
+                        "serviceName": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "com.amazonaws.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".ecr.dkr"
+                            ]
+                          ]
+                        },
+                        "vpcId": {
+                          "Ref": "SharedVpc96F0F614"
+                        },
+                        "privateDnsEnabled": true,
+                        "securityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "SharedVpcEcrDockerEndpointSecurityGroup041BC8B5",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "subnetIds": [
+                          {
+                            "Ref": "SharedVpcCoreSubnet1SubnetD90321B2"
+                          },
+                          {
+                            "Ref": "SharedVpcCoreSubnet2SubnetA37D5DB6"
+                          }
+                        ],
+                        "vpcEndpointType": "Interface"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "Core-Mgt-Account/Exports",
+            "children": {
+              "Output{\"Ref\":\"SharedVpc96F0F614\"}": {
+                "id": "Output{\"Ref\":\"SharedVpc96F0F614\"}",
+                "path": "Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpc96F0F614\"}"
+              },
+              "Output{\"Ref\":\"SharedVpcCoreSubnet1SubnetD90321B2\"}": {
+                "id": "Output{\"Ref\":\"SharedVpcCoreSubnet1SubnetD90321B2\"}",
+                "path": "Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpcCoreSubnet1SubnetD90321B2\"}"
+              },
+              "Output{\"Ref\":\"SharedVpcCoreSubnet2SubnetA37D5DB6\"}": {
+                "id": "Output{\"Ref\":\"SharedVpcCoreSubnet2SubnetA37D5DB6\"}",
+                "path": "Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpcCoreSubnet2SubnetA37D5DB6\"}"
+              }
+            }
+          }
+        }
+      },
+      "Core-Mgt-Dev-AppEnv": {
+        "id": "Core-Mgt-Dev-AppEnv",
+        "path": "Core-Mgt-Dev-AppEnv",
+        "children": {
+          "HostedZone": {
+            "id": "HostedZone",
+            "path": "Core-Mgt-Dev-AppEnv/HostedZone",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Dev-AppEnv/HostedZone/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Route53::HostedZone",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "dev.devops.cosmoscarnival.com."
+                  }
+                }
+              }
+            }
+          },
+          "ZoneDelegation": {
+            "id": "ZoneDelegation",
+            "path": "Core-Mgt-Dev-AppEnv/ZoneDelegation",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Dev-AppEnv/ZoneDelegation/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Route53::RecordSet",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "dev.devops.cosmoscarnival.com.",
+                    "type": "NS",
+                    "hostedZoneId": {
+                      "Fn::ImportValue": "Core:ExportsOutputRefSharedZone2FCC456CADF5B740"
+                    },
+                    "resourceRecords": {
+                      "Fn::GetAtt": [
+                        "HostedZoneDB99F866",
+                        "NameServers"
+                      ]
+                    },
+                    "ttl": "172800"
+                  }
+                }
+              }
+            }
+          },
+          "Cluster": {
+            "id": "Cluster",
+            "path": "Core-Mgt-Dev-AppEnv/Cluster",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Dev-AppEnv/Cluster/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Cluster",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              },
+              "Capacity": {
+                "id": "Capacity",
+                "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity",
+                "children": {
+                  "InstanceSecurityGroup": {
+                    "id": "InstanceSecurityGroup",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "groupDescription": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup",
+                            "securityGroupEgress": [
+                              {
+                                "cidrIp": "0.0.0.0/0",
+                                "description": "Allow all outbound traffic by default",
+                                "ipProtocol": "-1"
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                              }
+                            ],
+                            "vpcId": {
+                              "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpc96F0F6140AE947C7"
+                            }
+                          }
+                        }
+                      },
+                      "from CoreMgtDevAppEnvAlbSecurityGroup8C5D4B38:32768-65535": {
+                        "id": "from CoreMgtDevAppEnvAlbSecurityGroup8C5D4B38:32768-65535",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup/from CoreMgtDevAppEnvAlbSecurityGroup8C5D4B38:32768-65535",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                          "aws:cdk:cloudformation:props": {
+                            "ipProtocol": "tcp",
+                            "description": "Load balancer to target",
+                            "fromPort": 32768,
+                            "groupId": {
+                              "Fn::GetAtt": [
+                                "ClusterCapacityInstanceSecurityGroup2D6F9ADD",
+                                "GroupId"
+                              ]
+                            },
+                            "sourceSecurityGroupId": {
+                              "Fn::GetAtt": [
+                                "AlbSecurityGroup580F65A6",
+                                "GroupId"
+                              ]
+                            },
+                            "toPort": 65535
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "InstanceRole": {
+                    "id": "InstanceRole",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "ec2.",
+                                          {
+                                            "Ref": "AWS::URLSuffix"
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "ecs:CreateCluster",
+                                        "ecs:DeregisterContainerInstance",
+                                        "ecs:DiscoverPollEndpoint",
+                                        "ecs:Poll",
+                                        "ecs:RegisterContainerInstance",
+                                        "ecs:StartTelemetrySession",
+                                        "ecs:Submit*",
+                                        "ecr:GetAuthorizationToken",
+                                        "logs:CreateLogStream",
+                                        "logs:PutLogEvents"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": "*"
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "ClusterCapacityInstanceRoleDefaultPolicyCCA4190D",
+                                "roles": [
+                                  {
+                                    "Ref": "ClusterCapacityInstanceRole4A69070A"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "InstanceProfile": {
+                    "id": "InstanceProfile",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceProfile",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                      "aws:cdk:cloudformation:props": {
+                        "roles": [
+                          {
+                            "Ref": "ClusterCapacityInstanceRole4A69070A"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "LaunchConfig": {
+                    "id": "LaunchConfig",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LaunchConfig",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::AutoScaling::LaunchConfiguration",
+                      "aws:cdk:cloudformation:props": {
+                        "imageId": {
+                          "Ref": "SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter"
+                        },
+                        "instanceType": "t2.medium",
+                        "iamInstanceProfile": {
+                          "Ref": "ClusterCapacityInstanceProfileCD41BDF7"
+                        },
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "ClusterCapacityInstanceSecurityGroup2D6F9ADD",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "userData": {
+                          "Fn::Base64": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "#!/bin/bash\necho ECS_CLUSTER=",
+                                {
+                                  "Ref": "ClusterEB0386A7"
+                                },
+                                " >> /etc/ecs/ecs.config\nsudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP\nsudo service iptables save\necho ECS_AWSVPC_BLOCK_IMDS=true >> /etc/ecs/ecs.config"
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ASG": {
+                    "id": "ASG",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/ASG",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::AutoScaling::AutoScalingGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "maxSize": "1",
+                        "minSize": "1",
+                        "desiredCapacity": "1",
+                        "launchConfigurationName": {
+                          "Ref": "ClusterCapacityLaunchConfigC44566A4"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity",
+                            "propagateAtLaunch": true
+                          }
+                        ],
+                        "vpcZoneIdentifier": [
+                          {
+                            "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpcCoreSubnet1SubnetD90321B24F8C1D03"
+                          },
+                          {
+                            "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpcCoreSubnet2SubnetA37D5DB6DB907239"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "DrainECSHook": {
+                    "id": "DrainECSHook",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook",
+                    "children": {
+                      "Function": {
+                        "id": "Function",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function",
+                        "children": {
+                          "ServiceRole": {
+                            "id": "ServiceRole",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "Service": "lambda.amazonaws.com"
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "managedPolicyArns": [
+                                      {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            "arn:",
+                                            {
+                                              "Ref": "AWS::Partition"
+                                            },
+                                            ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                          ]
+                                        ]
+                                      }
+                                    ],
+                                    "tags": [
+                                      {
+                                        "key": "Name",
+                                        "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "ec2:DescribeInstances",
+                                                "ec2:DescribeInstanceAttribute",
+                                                "ec2:DescribeInstanceStatus",
+                                                "ec2:DescribeHosts"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": "*"
+                                            },
+                                            {
+                                              "Action": "autoscaling:CompleteLifecycleAction",
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::Join": [
+                                                  "",
+                                                  [
+                                                    "arn:",
+                                                    {
+                                                      "Ref": "AWS::Partition"
+                                                    },
+                                                    ":autoscaling:",
+                                                    {
+                                                      "Ref": "AWS::Region"
+                                                    },
+                                                    ":",
+                                                    {
+                                                      "Ref": "AWS::AccountId"
+                                                    },
+                                                    ":autoScalingGroup:*:autoScalingGroupName/",
+                                                    {
+                                                      "Ref": "ClusterCapacityASGA6ED330E"
+                                                    }
+                                                  ]
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "Action": [
+                                                "ecs:DescribeContainerInstances",
+                                                "ecs:DescribeTasks"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": "*"
+                                            },
+                                            {
+                                              "Action": [
+                                                "ecs:ListContainerInstances",
+                                                "ecs:SubmitContainerStateChange",
+                                                "ecs:SubmitTaskStateChange"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::GetAtt": [
+                                                  "ClusterEB0386A7",
+                                                  "Arn"
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "Action": [
+                                                "ecs:UpdateContainerInstancesState",
+                                                "ecs:ListTasks"
+                                              ],
+                                              "Condition": {
+                                                "ArnEquals": {
+                                                  "ecs:cluster": {
+                                                    "Fn::GetAtt": [
+                                                      "ClusterEB0386A7",
+                                                      "Arn"
+                                                    ]
+                                                  }
+                                                }
+                                              },
+                                              "Effect": "Allow",
+                                              "Resource": "*"
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "ClusterCapacityDrainECSHookFunctionServiceRoleDefaultPolicyAB4154DA",
+                                        "roles": [
+                                          {
+                                            "Ref": "ClusterCapacityDrainECSHookFunctionServiceRole58D510CB"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                              "aws:cdk:cloudformation:props": {
+                                "code": {
+                                  "zipFile": "import boto3, json, os, time\n\necs = boto3.client('ecs')\nautoscaling = boto3.client('autoscaling')\n\n\ndef lambda_handler(event, context):\n  print(json.dumps(event))\n  cluster = os.environ['CLUSTER']\n  snsTopicArn = event['Records'][0]['Sns']['TopicArn']\n  lifecycle_event = json.loads(event['Records'][0]['Sns']['Message'])\n  instance_id = lifecycle_event.get('EC2InstanceId')\n  if not instance_id:\n    print('Got event without EC2InstanceId: %s', json.dumps(event))\n    return\n\n  instance_arn = container_instance_arn(cluster, instance_id)\n  print('Instance %s has container instance ARN %s' % (lifecycle_event['EC2InstanceId'], instance_arn))\n\n  if not instance_arn:\n    return\n\n  while has_tasks(cluster, instance_arn):\n    time.sleep(10)\n\n  try:\n    print('Terminating instance %s' % instance_id)\n    autoscaling.complete_lifecycle_action(\n        LifecycleActionResult='CONTINUE',\n        **pick(lifecycle_event, 'LifecycleHookName', 'LifecycleActionToken', 'AutoScalingGroupName'))\n  except Exception as e:\n    # Lifecycle action may have already completed.\n    print(str(e))\n\n\ndef container_instance_arn(cluster, instance_id):\n  \"\"\"Turn an instance ID into a container instance ARN.\"\"\"\n  arns = ecs.list_container_instances(cluster=cluster, filter='ec2InstanceId==' + instance_id)['containerInstanceArns']\n  if not arns:\n    return None\n  return arns[0]\n\n\ndef has_tasks(cluster, instance_arn):\n  \"\"\"Return True if the instance is running tasks for the given cluster.\"\"\"\n  instances = ecs.describe_container_instances(cluster=cluster, containerInstances=[instance_arn])['containerInstances']\n  if not instances:\n    return False\n  instance = instances[0]\n\n  if instance['status'] == 'ACTIVE':\n    # Start draining, then try again later\n    set_container_instance_to_draining(cluster, instance_arn)\n    return True\n\n  tasks = instance['runningTasksCount'] + instance['pendingTasksCount']\n  print('Instance %s has %s tasks' % (instance_arn, tasks))\n\n  return tasks > 0\n\n\ndef set_container_instance_to_draining(cluster, instance_arn):\n  ecs.update_container_instances_state(\n      cluster=cluster,\n      containerInstances=[instance_arn], status='DRAINING')\n\n\ndef pick(dct, *keys):\n  \"\"\"Pick a subset of a dict.\"\"\"\n  return {k: v for k, v in dct.items() if k in keys}\n"
+                                },
+                                "handler": "index.lambda_handler",
+                                "role": {
+                                  "Fn::GetAtt": [
+                                    "ClusterCapacityDrainECSHookFunctionServiceRole58D510CB",
+                                    "Arn"
+                                  ]
+                                },
+                                "runtime": "python3.6",
+                                "environment": {
+                                  "variables": {
+                                    "CLUSTER": {
+                                      "Ref": "ClusterEB0386A7"
+                                    }
+                                  }
+                                },
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                                  }
+                                ],
+                                "timeout": 310
+                              }
+                            }
+                          },
+                          "AllowInvoke:CoreMgtDevAppEnvClusterCapacityLifecycleHookDrainHookTopic83375A17": {
+                            "id": "AllowInvoke:CoreMgtDevAppEnvClusterCapacityLifecycleHookDrainHookTopic83375A17",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/AllowInvoke:CoreMgtDevAppEnvClusterCapacityLifecycleHookDrainHookTopic83375A17",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "ClusterCapacityDrainECSHookFunctionF75C9A9F",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "sns.amazonaws.com",
+                                "sourceArn": {
+                                  "Ref": "ClusterCapacityLifecycleHookDrainHookTopic1768B95F"
+                                }
+                              }
+                            }
+                          },
+                          "Topic": {
+                            "id": "Topic",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/Topic",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/Topic/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                                  "aws:cdk:cloudformation:props": {
+                                    "protocol": "lambda",
+                                    "topicArn": {
+                                      "Ref": "ClusterCapacityLifecycleHookDrainHookTopic1768B95F"
+                                    },
+                                    "endpoint": {
+                                      "Fn::GetAtt": [
+                                        "ClusterCapacityDrainECSHookFunctionF75C9A9F",
+                                        "Arn"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "LifecycleHookDrainHook": {
+                    "id": "LifecycleHookDrainHook",
+                    "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook",
+                    "children": {
+                      "Role": {
+                        "id": "Role",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "autoscaling.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sns:Publish",
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Ref": "ClusterCapacityLifecycleHookDrainHookTopic1768B95F"
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "ClusterCapacityLifecycleHookDrainHookRoleDefaultPolicy34F3958B",
+                                    "roles": [
+                                      {
+                                        "Ref": "ClusterCapacityLifecycleHookDrainHookRoleB2BDD5F9"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Topic": {
+                        "id": "Topic",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Topic",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Topic/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                              "aws:cdk:cloudformation:props": {
+                                "tags": [
+                                  {
+                                    "key": "Name",
+                                    "value": "Core-Mgt-Dev-AppEnv/Cluster/Capacity"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::AutoScaling::LifecycleHook",
+                          "aws:cdk:cloudformation:props": {
+                            "autoScalingGroupName": {
+                              "Ref": "ClusterCapacityASGA6ED330E"
+                            },
+                            "lifecycleTransition": "autoscaling:EC2_INSTANCE_TERMINATING",
+                            "defaultResult": "CONTINUE",
+                            "heartbeatTimeout": 300,
+                            "notificationTargetArn": {
+                              "Ref": "ClusterCapacityLifecycleHookDrainHookTopic1768B95F"
+                            },
+                            "roleArn": {
+                              "Fn::GetAtt": [
+                                "ClusterCapacityLifecycleHookDrainHookRoleB2BDD5F9",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+            "id": "SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "Core-Mgt-Dev-AppEnv/SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter"
+          },
+          "SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+            "id": "SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "Core-Mgt-Dev-AppEnv/SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118"
+          },
+          "Alb": {
+            "id": "Alb",
+            "path": "Core-Mgt-Dev-AppEnv/Alb",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Dev-AppEnv/Alb/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                  "aws:cdk:cloudformation:props": {
+                    "scheme": "internal",
+                    "securityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "AlbSecurityGroup580F65A6",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnets": [
+                      {
+                        "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpcCoreSubnet1SubnetD90321B24F8C1D03"
+                      },
+                      {
+                        "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpcCoreSubnet2SubnetA37D5DB6DB907239"
+                      }
+                    ],
+                    "type": "application"
+                  }
+                }
+              },
+              "SecurityGroup": {
+                "id": "SecurityGroup",
+                "path": "Core-Mgt-Dev-AppEnv/Alb/SecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Dev-AppEnv/Alb/SecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Automatically created Security Group for ELB CoreMgtDevAppEnvAlb76BD5815",
+                        "securityGroupIngress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "ipProtocol": "tcp",
+                            "fromPort": 80,
+                            "toPort": 80,
+                            "description": "Allow from anyone on port 80"
+                          }
+                        ],
+                        "vpcId": {
+                          "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpc96F0F6140AE947C7"
+                        }
+                      }
+                    }
+                  },
+                  "to CoreMgtDevAppEnvClusterCapacityInstanceSecurityGroupBB8774AD:32768-65535": {
+                    "id": "to CoreMgtDevAppEnvClusterCapacityInstanceSecurityGroupBB8774AD:32768-65535",
+                    "path": "Core-Mgt-Dev-AppEnv/Alb/SecurityGroup/to CoreMgtDevAppEnvClusterCapacityInstanceSecurityGroupBB8774AD:32768-65535",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupEgress",
+                      "aws:cdk:cloudformation:props": {
+                        "groupId": {
+                          "Fn::GetAtt": [
+                            "AlbSecurityGroup580F65A6",
+                            "GroupId"
+                          ]
+                        },
+                        "ipProtocol": "tcp",
+                        "description": "Load balancer to target",
+                        "destinationSecurityGroupId": {
+                          "Fn::GetAtt": [
+                            "ClusterCapacityInstanceSecurityGroup2D6F9ADD",
+                            "GroupId"
+                          ]
+                        },
+                        "fromPort": 32768,
+                        "toPort": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "HttpListener": {
+                "id": "HttpListener",
+                "path": "Core-Mgt-Dev-AppEnv/Alb/HttpListener",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Dev-AppEnv/Alb/HttpListener/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                      "aws:cdk:cloudformation:props": {
+                        "defaultActions": [
+                          {
+                            "targetGroupArn": {
+                              "Ref": "AlbHttpListenerHealthCheckGroup12A7B03D"
+                            },
+                            "type": "forward"
+                          }
+                        ],
+                        "loadBalancerArn": {
+                          "Ref": "Alb16C2F182"
+                        },
+                        "port": 80,
+                        "protocol": "HTTP"
+                      }
+                    }
+                  },
+                  "HealthCheckGroup": {
+                    "id": "HealthCheckGroup",
+                    "path": "Core-Mgt-Dev-AppEnv/Alb/HttpListener/HealthCheckGroup",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Dev-AppEnv/Alb/HttpListener/HealthCheckGroup/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "port": 80,
+                            "protocol": "HTTP",
+                            "targetType": "instance",
+                            "vpcId": {
+                              "Fn::ImportValue": "Core-Mgt-Account:ExportsOutputRefSharedVpc96F0F6140AE947C7"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "HealthCheckTask": {
+            "id": "HealthCheckTask",
+            "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask",
+            "children": {
+              "TaskRole": {
+                "id": "TaskRole",
+                "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/TaskRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/TaskRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "essential": true,
+                        "image": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              {
+                                "Ref": "AWS::AccountId"
+                              },
+                              ".dkr.ecr.",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ".",
+                              {
+                                "Ref": "AWS::URLSuffix"
+                              },
+                              "/aws-cdk/assets:d997233893597f3cb37384cc28ad2306fe7ec9f4eae44a792cacc327743e297e"
+                            ]
+                          ]
+                        },
+                        "memory": 512,
+                        "name": "HealthCheckContainer",
+                        "portMappings": [
+                          {
+                            "containerPort": 80,
+                            "hostPort": 0,
+                            "protocol": "tcp"
+                          }
+                        ]
+                      }
+                    ],
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "HealthCheckTaskExecutionRole70A7C139",
+                        "Arn"
+                      ]
+                    },
+                    "family": "CoreMgtDevAppEnvHealthCheckTask82910DFA",
+                    "networkMode": "bridge",
+                    "requiresCompatibilities": [
+                      "EC2"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "HealthCheckTaskTaskRole183085A8",
+                        "Arn"
+                      ]
+                    }
+                  }
+                }
+              },
+              "HealthCheckContainer": {
+                "id": "HealthCheckContainer",
+                "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/HealthCheckContainer",
+                "children": {
+                  "AssetImage": {
+                    "id": "AssetImage",
+                    "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/HealthCheckContainer/AssetImage",
+                    "children": {
+                      "Staging": {
+                        "id": "Staging",
+                        "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/HealthCheckContainer/AssetImage/Staging"
+                      },
+                      "Repository": {
+                        "id": "Repository",
+                        "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/HealthCheckContainer/AssetImage/Repository"
+                      }
+                    }
+                  }
+                }
+              },
+              "ExecutionRole": {
+                "id": "ExecutionRole",
+                "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "ecs-tasks.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        }
+                      }
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "ecr:BatchCheckLayerAvailability",
+                                    "ecr:GetDownloadUrlForLayer",
+                                    "ecr:BatchGetImage"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":ecr:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":",
+                                        {
+                                          "Ref": "AWS::AccountId"
+                                        },
+                                        ":repository/aws-cdk/assets"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "ecr:GetAuthorizationToken",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "HealthCheckTaskExecutionRoleDefaultPolicy5EB55C4B",
+                            "roles": [
+                              {
+                                "Ref": "HealthCheckTaskExecutionRole70A7C139"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "HealthCheckService": {
+            "id": "HealthCheckService",
+            "path": "Core-Mgt-Dev-AppEnv/HealthCheckService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "Core-Mgt-Dev-AppEnv/HealthCheckService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Ref": "ClusterEB0386A7"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "EC2",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "AlbHttpListenerHealthCheckGroup12A7B03D"
+                        },
+                        "containerName": "HealthCheckContainer",
+                        "containerPort": 80
+                      }
+                    ],
+                    "schedulingStrategy": "REPLICA",
+                    "taskDefinition": {
+                      "Ref": "HealthCheckTaskA9D412D9"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Core-Mgt-Tst-AppEnv": {
+        "id": "Core-Mgt-Tst-AppEnv",
+        "path": "Core-Mgt-Tst-AppEnv",
+        "children": {
+          "HostedZone": {
+            "id": "HostedZone",
+            "path": "Core-Mgt-Tst-AppEnv/HostedZone",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Tst-AppEnv/HostedZone/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Route53::HostedZone",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "tst.devops.cosmoscarnival.com."
+                  }
+                }
+              }
+            }
+          },
+          "ZoneDelegation": {
+            "id": "ZoneDelegation",
+            "path": "Core-Mgt-Tst-AppEnv/ZoneDelegation",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "Core-Mgt-Tst-AppEnv/ZoneDelegation/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Route53::RecordSet",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "tst.devops.cosmoscarnival.com.",
+                    "type": "NS",
+                    "hostedZoneId": {
+                      "Fn::ImportValue": "Core:ExportsOutputRefSharedZone2FCC456CADF5B740"
+                    },
+                    "resourceRecords": {
+                      "Fn::GetAtt": [
+                        "HostedZoneDB99F866",
+                        "NameServers"
+                      ]
+                    },
+                    "ttl": "172800"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

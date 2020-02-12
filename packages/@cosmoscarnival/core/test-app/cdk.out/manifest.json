@@ -1,0 +1,1740 @@
+{
+  "version": "1.21.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "Core": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "Core.template.json"
+      },
+      "metadata": {
+        "/Core/SharedZone/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedZone2FCC456C",
+            "trace": [
+              "new HostedZone (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/hosted-zone.ts:128:22)",
+              "new ProjectApp (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/project.ts:27:17)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:6:20)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core/Exports/Output{\"Ref\":\"SharedZone2FCC456C\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefSharedZone2FCC456CADF5B740",
+            "trace": [
+              "Stack.prepareCrossReference (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:919:7)",
+              "AppEnvStack.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:769:37)",
+              "Function.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:81:28)",
+              "Function.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:40:10)",
+              "ProjectApp.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:141:36)",
+              "process.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:120:45)",
+              "Object.onceWrapper (events.js:313:26)",
+              "process.emit (events.js:223:5)",
+              "process.EventEmitter.emit (domain.js:475:20)",
+              "process.emit (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/source-map-support/source-map-support.js:485:21)",
+              "process.topLevelDomainCallback (domain.js:130:23)"
+            ]
+          }
+        ]
+      }
+    },
+    "Core-Mgt-Account": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "Core-Mgt-Account.template.json"
+      },
+      "metadata": {
+        "/Core-Mgt-Account/SharedVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpc96F0F614",
+            "trace": [
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1015:21)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet1SubnetD90321B2",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1332:20)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet1RouteTableB70AECC1",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1349:19)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet1RouteTableAssociationAE84CE75",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1355:5)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet2SubnetA37D5DB6",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1332:20)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet2RouteTableCB955C1D",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1349:19)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/CoreSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcCoreSubnet2RouteTableAssociation82644BEB",
+            "trace": [
+              "new Subnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1355:5)",
+              "new PrivateSubnet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1586:5)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1208:34",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1180:28)",
+              "Vpc.createSubnets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1169:12)",
+              "new Vpc (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:1043:10)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:44:18)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/S3Gateway/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcS3Gateway58B8AA14",
+            "trace": [
+              "new GatewayVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:176:22)",
+              "Vpc.addGatewayEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:357:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:57:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsEndpoint/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsEndpointSecurityGroup5BBB3ABF",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:430:53)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:61:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsEndpoint39554E09",
+            "trace": [
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:447:22)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:61:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsAgentEndpointSecurityGroupF4FDE620",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:430:53)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:64:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsAgentEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsAgentEndpointF563397C",
+            "trace": [
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:447:22)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:64:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsTelemetryEndpointSecurityGroup628281C3",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:430:53)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:67:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcsTelemetryEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcsTelemetryEndpoint21E8B9F4",
+            "trace": [
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:447:22)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:67:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcrEndpoint/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcrEndpointSecurityGroup2D339FA4",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:430:53)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:70:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcrEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcrEndpointEC349307",
+            "trace": [
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:447:22)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:70:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcrDockerEndpointSecurityGroup041BC8B5",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:430:53)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:73:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/SharedVpc/EcrDockerEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SharedVpcEcrDockerEndpoint3156011A",
+            "trace": [
+              "new InterfaceVpcEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc-endpoint.ts:447:22)",
+              "Vpc.addInterfaceEndpoint (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/vpc.ts:347:12)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:73:16)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpc96F0F614\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefSharedVpc96F0F6140AE947C7",
+            "trace": [
+              "AccountStack.prepareCrossReference (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:919:7)",
+              "EcsAppEnvStack.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:769:37)",
+              "Function.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:81:28)",
+              "Function.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:40:10)",
+              "ProjectApp.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:141:36)",
+              "process.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:120:45)",
+              "Object.onceWrapper (events.js:313:26)",
+              "process.emit (events.js:223:5)",
+              "process.EventEmitter.emit (domain.js:475:20)",
+              "process.emit (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/source-map-support/source-map-support.js:485:21)",
+              "process.topLevelDomainCallback (domain.js:130:23)"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpcCoreSubnet1SubnetD90321B2\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefSharedVpcCoreSubnet1SubnetD90321B24F8C1D03",
+            "trace": [
+              "AccountStack.prepareCrossReference (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:919:7)",
+              "EcsAppEnvStack.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:769:37)",
+              "Function.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:81:28)",
+              "Function.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:40:10)",
+              "ProjectApp.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:141:36)",
+              "process.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:120:45)",
+              "Object.onceWrapper (events.js:313:26)",
+              "process.emit (events.js:223:5)",
+              "process.EventEmitter.emit (domain.js:475:20)",
+              "process.emit (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/source-map-support/source-map-support.js:485:21)",
+              "process.topLevelDomainCallback (domain.js:130:23)"
+            ]
+          }
+        ],
+        "/Core-Mgt-Account/Exports/Output{\"Ref\":\"SharedVpcCoreSubnet2SubnetA37D5DB6\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefSharedVpcCoreSubnet2SubnetA37D5DB6DB907239",
+            "trace": [
+              "AccountStack.prepareCrossReference (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:919:7)",
+              "EcsAppEnvStack.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:769:37)",
+              "Function.prepare (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:81:28)",
+              "Function.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:40:10)",
+              "ProjectApp.synth (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:141:36)",
+              "process.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/app.ts:120:45)",
+              "Object.onceWrapper (events.js:313:26)",
+              "process.emit (events.js:223:5)",
+              "process.EventEmitter.emit (domain.js:475:20)",
+              "process.emit (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/source-map-support/source-map-support.js:485:21)",
+              "process.topLevelDomainCallback (domain.js:130:23)"
+            ]
+          }
+        ]
+      }
+    },
+    "Core-Mgt-Dev-AppEnv": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "Core-Mgt-Dev-AppEnv.template.json"
+      },
+      "dependencies": [
+        "Core",
+        "Core-Mgt-Account"
+      ],
+      "metadata": {
+        "/Core-Mgt-Dev-AppEnv": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "repositoryName": "aws-cdk/assets",
+              "imageTag": "d997233893597f3cb37384cc28ad2306fe7ec9f4eae44a792cacc327743e297e",
+              "id": "d997233893597f3cb37384cc28ad2306fe7ec9f4eae44a792cacc327743e297e",
+              "packaging": "container-image",
+              "path": "asset.d997233893597f3cb37384cc28ad2306fe7ec9f4eae44a792cacc327743e297e",
+              "sourceHash": "d997233893597f3cb37384cc28ad2306fe7ec9f4eae44a792cacc327743e297e"
+            },
+            "trace": [
+              "EcsAppEnvStack.addDockerImageAsset (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/stack.ts:595:17)",
+              "new DockerImageAsset (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecr-assets/lib/image-asset.ts:143:28)",
+              "AssetImage.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/images/asset-image.ts:26:19)",
+              "new ContainerDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/container-definition.ts:361:36)",
+              "Ec2TaskDefinition.addContainer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:366:12)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:130:8)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HostedZone/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HostedZoneDB99F866",
+            "trace": [
+              "new HostedZone (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/hosted-zone.ts:128:22)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:79:17)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/ZoneDelegation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ZoneDelegationAE61034B",
+            "trace": [
+              "new RecordSet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/record-set.ts:122:23)",
+              "new ZoneDelegationRecord (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/record-set.ts:442:5)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:83:5)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:101:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterEB0386A7",
+            "trace": [
+              "new Cluster (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:109:21)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:103:20)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "desiredCapacity has been configured. Be aware this will reset the size of your AutoScalingGroup on every deployment. See https://github.com/aws/aws-cdk/issues/5215",
+            "trace": [
+              "ConstructNode.addWarning (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/core/lib/construct.ts:343:10)",
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:491:17)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityInstanceSecurityGroup2D6F9ADD",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:422:26)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceSecurityGroup/from CoreMgtDevAppEnvAlbSecurityGroup8C5D4B38:32768-65535": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityInstanceSecurityGroupfromCoreMgtDevAppEnvAlbSecurityGroup8C5D4B3832768655354866BE2A",
+            "trace": [
+              "SecurityGroup.addIngressRule (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:85:7)",
+              "SecurityGroup.addIngressRule (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:387:13)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:154:23",
+              "ReactiveList.forEachAndForever (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:267:7)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:153:45",
+              "ReactiveList.forEachAndForever (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:267:7)",
+              "Connections.allowFrom (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:152:26)",
+              "ApplicationListener.registerConnectable (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:328:29)",
+              "ApplicationTargetGroup.registerListener (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.ts:159:16)",
+              "ApplicationListener.addDefaultTargetGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:347:17)",
+              "ApplicationListener.addTargetGroups (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:218:14)",
+              "ApplicationListener.addTargets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:252:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:144:23)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityInstanceRole4A69070A",
+            "trace": [
+              "new Role (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:289:18)",
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:430:31)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityInstanceRoleDefaultPolicyCCA4190D",
+            "trace": [
+              "new Policy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/policy.ts:114:22)",
+              "Role.addToPolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:329:28)",
+              "AutoScalingGroup.addToRolePolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:594:15)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:215:22)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityInstanceProfileCD41BDF7",
+            "trace": [
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:437:24)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/LaunchConfig": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityLaunchConfigC44566A4",
+            "trace": [
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:447:26)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/ASG": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityASGA6ED330E",
+            "trace": [
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:523:29)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityDrainECSHookFunctionServiceRole58D510CB",
+            "trace": [
+              "new Role (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:289:18)",
+              "new Function (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-lambda/lib/function.ts:440:31)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:52:16)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityDrainECSHookFunctionServiceRoleDefaultPolicyAB4154DA",
+            "trace": [
+              "new Policy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/policy.ts:114:22)",
+              "Role.addToPolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:329:28)",
+              "Function.addToRolePolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:221:15)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:74:8)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityDrainECSHookFunctionF75C9A9F",
+            "trace": [
+              "new Function (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-lambda/lib/function.ts:453:35)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:52:16)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/AllowInvoke:CoreMgtDevAppEnvClusterCapacityLifecycleHookDrainHookTopic83375A17": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityDrainECSHookFunctionAllowInvokeCoreMgtDevAppEnvClusterCapacityLifecycleHookDrainHookTopic83375A17CD08A9D6",
+            "trace": [
+              "Function.addPermission (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:203:5)",
+              "LambdaSubscription.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns-subscriptions/lib/lambda.ts:27:13)",
+              "Topic.addSubscription (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns/lib/topic-base.ts:59:45)",
+              "FunctionHook.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling-hooktargets/lib/lambda-hook.ts:19:11)",
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:103:50)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/DrainECSHook/Function/Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityDrainECSHookFunctionTopic49CF7031",
+            "trace": [
+              "new Subscription (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns/lib/subscription.ts:89:5)",
+              "Topic.addSubscription (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns/lib/topic-base.ts:70:5)",
+              "FunctionHook.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling-hooktargets/lib/lambda-hook.ts:19:11)",
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:103:50)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityLifecycleHookDrainHookRoleB2BDD5F9",
+            "trace": [
+              "new Role (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:289:18)",
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:99:31)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityLifecycleHookDrainHookRoleDefaultPolicy34F3958B",
+            "trace": [
+              "new Policy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/policy.ts:114:22)",
+              "Role.addToPolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:329:28)",
+              "Function.addToPrincipal (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/grant.ts:147:61)",
+              "Function.addToPrincipalOrResource (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/grant.ts:117:26)",
+              "Topic.grantPublish (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns/lib/topic-base.ts:97:22)",
+              "TopicHook.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling-hooktargets/lib/topic-hook.ts:13:16)",
+              "FunctionHook.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling-hooktargets/lib/lambda-hook.ts:20:33)",
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:103:50)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Topic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityLifecycleHookDrainHookTopic1768B95F",
+            "trace": [
+              "new Topic (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-sns/lib/topic.ts:61:22)",
+              "FunctionHook.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling-hooktargets/lib/lambda-hook.ts:18:19)",
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:103:50)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Cluster/Capacity/LifecycleHookDrainHook/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterCapacityLifecycleHookDrainHook9C5B4B9E",
+            "trace": [
+              "new LifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/lifecycle-hook.ts:105:22)",
+              "AutoScalingGroup.addLifecycleHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:245:12)",
+              "new InstanceDrainHook (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/drain-hook/instance-drain-hook.ts:65:28)",
+              "Cluster.addAutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:233:7)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:181:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter",
+            "trace": [
+              "Function.fromStringParameterAttributes (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ssm/lib/parameter.ts:301:9)",
+              "Function.valueForTypedStringParameter (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ssm/lib/parameter.ts:371:17)",
+              "EcsOptimizedAmi.getImage (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:380:37)",
+              "new AutoScalingGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-autoscaling/lib/auto-scaling-group.ts:442:44)",
+              "Cluster.addCapacity (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/cluster.ts:173:30)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:107:18)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Alb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Alb16C2F182",
+            "trace": [
+              "new BaseLoadBalancer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-load-balancer.ts:138:22)",
+              "new ApplicationLoadBalancer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.ts:64:5)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:112:16)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Alb/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AlbSecurityGroup580F65A6",
+            "trace": [
+              "new SecurityGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:370:26)",
+              "new ApplicationLoadBalancer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.ts:70:49)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:112:16)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Alb/SecurityGroup/to CoreMgtDevAppEnvClusterCapacityInstanceSecurityGroupBB8774AD:32768-65535": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AlbSecurityGrouptoCoreMgtDevAppEnvClusterCapacityInstanceSecurityGroupBB8774AD3276865535E36FDC45",
+            "trace": [
+              "SecurityGroup.addEgressRule (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:103:7)",
+              "SecurityGroup.addEgressRule (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/security-group.ts:416:13)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:131:23",
+              "ReactiveList.forEachAndForever (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:267:7)",
+              "/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:130:45",
+              "ReactiveList.forEachAndForever (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:267:7)",
+              "Connections.allowTo (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:129:26)",
+              "Connections.allowFrom (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ec2/lib/connections.ts:161:25)",
+              "ApplicationListener.registerConnectable (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:328:29)",
+              "ApplicationTargetGroup.registerListener (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.ts:159:16)",
+              "ApplicationListener.addDefaultTargetGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:347:17)",
+              "ApplicationListener.addTargetGroups (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:218:14)",
+              "ApplicationListener.addTargets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:252:10)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:144:23)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Alb/HttpListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AlbHttpListener00C8B33E",
+            "trace": [
+              "new BaseListener (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-listener.ts:19:22)",
+              "new ApplicationListener (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:125:5)",
+              "ApplicationLoadBalancer.addListener (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.ts:113:12)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:115:34)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/Alb/HttpListener/HealthCheckGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AlbHttpListenerHealthCheckGroup12A7B03D",
+            "trace": [
+              "new TargetGroupBase (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-target-group.ts:226:21)",
+              "new ApplicationTargetGroup (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.ts:93:5)",
+              "ApplicationListener.addTargets (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.ts:240:19)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:144:23)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HealthCheckTask/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckTaskTaskRole183085A8",
+            "trace": [
+              "new Role (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:289:18)",
+              "new TaskDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:276:39)",
+              "new Ec2TaskDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/ec2/ec2-task-definition.ts:59:5)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:128:28)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HealthCheckTask/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckTaskA9D412D9",
+            "trace": [
+              "new TaskDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:280:21)",
+              "new Ec2TaskDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/ec2/ec2-task-definition.ts:59:5)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:128:28)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckTaskExecutionRole70A7C139",
+            "trace": [
+              "new Role (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:289:18)",
+              "Ec2TaskDefinition.obtainExecutionRole (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:424:29)",
+              "AssetImage.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/images/asset-image.ts:31:67)",
+              "new ContainerDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/container-definition.ts:361:36)",
+              "Ec2TaskDefinition.addContainer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:366:12)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:130:8)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HealthCheckTask/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckTaskExecutionRoleDefaultPolicy5EB55C4B",
+            "trace": [
+              "new Policy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/policy.ts:114:22)",
+              "Role.addToPolicy (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/role.ts:329:28)",
+              "Function.addToPrincipal (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/grant.ts:147:61)",
+              "Function.addToPrincipalOrResource (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-iam/lib/grant.ts:117:26)",
+              "Import.grant (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecr/lib/repository.ts:227:22)",
+              "Import.grantPull (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecr/lib/repository.ts:240:22)",
+              "AssetImage.bind (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/images/asset-image.ts:31:22)",
+              "new ContainerDefinition (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/container-definition.ts:361:36)",
+              "Ec2TaskDefinition.addContainer (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.ts:366:12)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:130:8)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Dev-AppEnv/HealthCheckService/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HealthCheckService6683CE52",
+            "trace": [
+              "new BaseService (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.ts:321:21)",
+              "new Ec2Service (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-ecs/lib/ec2/ec2-service.ts:138:5)",
+              "new EcsAppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:139:24)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:12:22)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ]
+      }
+    },
+    "Core-Mgt-Tst-AppEnv": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "Core-Mgt-Tst-AppEnv.template.json"
+      },
+      "dependencies": [
+        "Core"
+      ],
+      "metadata": {
+        "/Core-Mgt-Tst-AppEnv/HostedZone/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HostedZoneDB99F866",
+            "trace": [
+              "new HostedZone (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/hosted-zone.ts:128:22)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:79:17)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:13:19)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ],
+        "/Core-Mgt-Tst-AppEnv/ZoneDelegation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ZoneDelegationAE61034B",
+            "trace": [
+              "new RecordSet (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/record-set.ts:122:23)",
+              "new ZoneDelegationRecord (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/node_modules/@aws-cdk/aws-route53/lib/record-set.ts:442:5)",
+              "new AppEnvStack (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/lib/appEnv.ts:83:5)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/src/test-app.ts:13:19)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Module.m._compile (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:814:23)",
+              "Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/index.ts:817:12)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "main (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:226:14)",
+              "Object.<anonymous> (/Users/s108647/Documents/Github/carnivalofthecosmos/cdk/packages/@cosmoscarnival/core/test-app/node_modules/ts-node/src/bin.ts:485:3)",
+              "Module._compile (internal/modules/cjs/loader.js:955:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)",
+              "Module.load (internal/modules/cjs/loader.js:811:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:723:14)",
+              "Function.Module.runMain (internal/modules/cjs/loader.js:1043:10)",
+              "/usr/local/lib/node_modules/npm/node_modules/libnpx/index.js:268:14"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "libraries": {
+      "@aws-cdk/core": "1.23.0",
+      "@aws-cdk/cx-api": "1.23.0",
+      "@aws-cdk/aws-route53": "1.23.0",
+      "@aws-cdk/aws-ec2": "1.23.0",
+      "@aws-cdk/aws-iam": "1.23.0",
+      "@aws-cdk/region-info": "1.23.0",
+      "@aws-cdk/aws-ssm": "1.23.0",
+      "@aws-cdk/aws-cloudwatch": "1.23.0",
+      "@aws-cdk/aws-ecs": "1.23.0",
+      "@aws-cdk/aws-applicationautoscaling": "1.23.0",
+      "@aws-cdk/aws-autoscaling-common": "1.23.0",
+      "@aws-cdk/aws-elasticloadbalancingv2": "1.23.0",
+      "@aws-cdk/aws-servicediscovery": "1.23.0",
+      "@aws-cdk/aws-ecr-assets": "1.23.0",
+      "@aws-cdk/assets": "1.23.0",
+      "@aws-cdk/aws-ecr": "1.23.0",
+      "@aws-cdk/aws-events": "1.23.0",
+      "@aws-cdk/aws-logs": "1.23.0",
+      "@aws-cdk/aws-autoscaling": "1.23.0",
+      "@aws-cdk/aws-autoscaling-hooktargets": "1.23.0",
+      "@aws-cdk/aws-sns": "1.23.0",
+      "@aws-cdk/aws-sns-subscriptions": "1.23.0",
+      "@aws-cdk/aws-lambda": "1.23.0",
+      "@aws-cdk/aws-sqs": "1.23.0",
+      "@aws-cdk/aws-kms": "1.23.0",
+      "@aws-cdk/aws-s3-assets": "1.23.0",
+      "@aws-cdk/aws-s3": "1.23.0",
+      "jsii-runtime": "node.js/v12.14.1"
+    }
+  }
+}
