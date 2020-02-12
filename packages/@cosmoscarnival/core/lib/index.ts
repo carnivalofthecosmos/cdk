@@ -23,3 +23,4 @@ export const CORE_TLD = 'CORE_TLD';
 export { ProjectApp, ProjectAppProps } from './project';
 export { AccountStack, AccountStackProps } from './account';
 export { IAppEnv, AppEnvStack, AppEnvStackProps, EcsAppEnvStack, EcsAppEnvStackProps } from './appEnv';
+export { EcsServiceStack, EcsServiceStackProps } from './ecs-service';

@@ -9,7 +9,7 @@ import {
 } from '@aws-cdk/aws-ec2';
 import { IHostedZone, HostedZone, ZoneDelegationRecord } from '@aws-cdk/aws-route53';
 import { Cluster, Ec2TaskDefinition, Ec2Service, ContainerImage, Protocol } from '@aws-cdk/aws-ecs';
-import { ApplicationLoadBalancer, ApplicationListener } from '@aws-cdk/aws-elasticloadbalancingv2';
+import { ApplicationLoadBalancer, ApplicationListener, ApplicationTargetGroup } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { LambdaTarget } from '@aws-cdk/aws-elasticloadbalancingv2-targets';
 import { AccountStack } from '.';
@@ -96,6 +96,7 @@ export class EcsAppEnvStack extends AppEnvStack {
   readonly alb: ApplicationLoadBalancer;
   readonly httpListener: ApplicationListener;
   readonly httpsListener: ApplicationListener;
+  readonly targetGroup: ApplicationTargetGroup;
 
   constructor(scope: AccountStack, appEnv: string, props?: EcsAppEnvStackProps) {
     super(scope, appEnv, props);
@@ -112,9 +113,13 @@ export class EcsAppEnvStack extends AppEnvStack {
     this.alb = new ApplicationLoadBalancer(this, 'Alb', {
       vpc: this.vpc,
     });
+    this.targetGroup = new ApplicationTargetGroup(this, 'AppTargetGroup', {
+      vpc: this.vpc,
+      port: 80,
+    })
     this.httpListener = this.alb.addListener('HttpListener', {
       port: 80,
-      open: true,
+      defaultTargetGroups: [this.targetGroup]
     });
 
     // TODO:
