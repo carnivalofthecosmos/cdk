@@ -1,4 +1,4 @@
-import * as cdk from "@aws-cdk/core";
+import { Construct, Duration } from '@aws-cdk/core';
 
 export interface LibTemplateProps {
   /**
@@ -6,14 +6,14 @@ export interface LibTemplateProps {
    *
    * @default Duration.seconds(300)
    */
-  visibilityTimeout?: cdk.Duration;
+  visibilityTimeout?: Duration;
 }
 
-export class LibTemplate extends cdk.Construct {
+export class LibTemplate extends Construct {
   /** @returns the ARN of the SQS queue */
   public readonly queueArn: string;
 
-  constructor(scope: cdk.Construct, id: string, props: LibTemplateProps = {}) {
+  constructor(scope: Construct, id: string, props: LibTemplateProps = {}) {
     super(scope, id);
   }
 }
