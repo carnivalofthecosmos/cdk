@@ -1,31 +1,48 @@
-import { App, AppProps, Stack, StackProps } from '@aws-cdk/core';
+import { App, AppProps, Stack, StackProps, Construct } from '@aws-cdk/core';
 import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
-import { CORE_TLD } from '.';
+import { RemoteZone } from '.';
 
-export interface ProjectAppProps extends AppProps, StackProps {
+export interface IProject extends Construct {
+  App: App;
+  Project: string;
+  Zone: IHostedZone;
+}
+
+export interface ProjectStackProps extends StackProps {
   tld: string;
 }
 
-export class ProjectApp extends App {
-  readonly stack: Stack;
-  readonly project: string;
-  readonly zone: HostedZone;
+export class ProjectStack extends Stack implements IProject {
+  readonly App: App;
+  readonly Project: string;
+  readonly Zone: HostedZone;
 
-  constructor(project: string, props: ProjectAppProps) {
-    const { tld, context, ...remaining } = props;
-    super({
-      ...remaining,
-      context: {
-        ...context,
-        [CORE_TLD]: tld,
-      },
-    });
+  constructor(app: App, project: string, props: ProjectStackProps) {
+    super(app, 'Core-Project', props);
 
-    this.stack = new Stack(this, 'Core', props);
-    this.project = project;
+    const { tld } = props;
 
-    this.zone = new HostedZone(this.stack, 'SharedZone', {
+    this.App = app;
+    this.Project = project;
+
+    this.Zone = new HostedZone(this, 'RootZone', {
       zoneName: `${project}.${tld}`.toLowerCase(),
     });
+
+    RemoteZone.export(this.Project, this.Zone);
+  }
+}
+
+export class ImportedProject extends Construct implements IProject {
+  readonly App: App;
+  readonly Project: string;
+  readonly Zone: IHostedZone;
+
+  constructor(scope: Construct, project: string) {
+    super(scope, 'Core-Project');
+
+    this.App = scope.node.scope as App;
+    this.Project = project;
+    this.Zone = RemoteZone.import(this, this.Project, 'RootZone');
   }
 }

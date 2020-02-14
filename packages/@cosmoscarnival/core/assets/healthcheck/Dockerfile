@@ -1,1 +1,0 @@
-FROM emilevauge/whoami

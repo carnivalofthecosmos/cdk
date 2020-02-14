@@ -1,16 +1,32 @@
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
-import { ProjectApp } from '.';
+import { IProject, ProjectStack } from '.';
+
+export interface IAccount extends Construct {
+  Project: IProject;
+  Account: string;
+}
 
 export interface AccountStackProps extends StackProps {}
 
-export class AccountStack extends Stack {
-  readonly projectApp: ProjectApp;
-  readonly account: string;
+export class AccountStack extends Stack implements IAccount {
+  readonly Project: IProject;
+  readonly Account: string;
 
-  constructor(projectApp: ProjectApp, account: string, props?: AccountStackProps) {
-    super(projectApp, `Core-${account}-Account`, props);
+  constructor(project: IProject, account: string, props?: AccountStackProps) {
+    super(project.App, `Core-${account}-Account`, props);
 
-    this.projectApp = projectApp;
-    this.account = account;
+    this.Project = project;
+    this.Account = account;
+  }
+}
+
+export class ImportedAccount extends Construct implements IAccount {
+  readonly Project: IProject;
+  readonly Account: string;
+  constructor(scope: Construct, project: IProject, account: string) {
+    super(scope, `Core-${account}-Account`);
+
+    this.Project = project;
+    this.Account = account;
   }
 }

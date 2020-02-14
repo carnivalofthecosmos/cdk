@@ -8,27 +8,35 @@ import {
   InstanceType,
 } from '@aws-cdk/aws-ec2';
 import { IHostedZone, HostedZone, ZoneDelegationRecord } from '@aws-cdk/aws-route53';
-import { Cluster, Ec2TaskDefinition, Ec2Service, ContainerImage, Protocol } from '@aws-cdk/aws-ecs';
-import { ApplicationLoadBalancer, ApplicationListener, ApplicationTargetGroup } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { Repository } from '@aws-cdk/aws-ecr';
-import { LambdaTarget } from '@aws-cdk/aws-elasticloadbalancingv2-targets';
-import { AccountStack } from '.';
+import { Cluster, ICluster } from '@aws-cdk/aws-ecs';
+import {
+  ApplicationLoadBalancer,
+  ApplicationListener,
+  ApplicationTargetGroup,
+  ApplicationProtocol,
+  TargetType,
+  IApplicationLoadBalancer,
+  IApplicationListener,
+} from '@aws-cdk/aws-elasticloadbalancingv2';
+import { IAccount, AccountStack, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
 
 export interface IAppEnv extends Construct {
-  accountStack: AccountStack;
-  vpc: IVpc;
+  Account: IAccount;
+  AppEnv: string;
+  Vpc: IVpc;
+  Zone: IHostedZone;
 }
 
 export interface AppEnvStackProps extends StackProps {}
 
 export class AppEnvStack extends Stack implements IAppEnv {
-  readonly accountStack: AccountStack;
-  readonly appEnv: string;
-  readonly vpc: IVpc;
-  readonly zone: IHostedZone;
+  readonly Account: IAccount;
+  readonly AppEnv: string;
+  readonly Vpc: Vpc;
+  readonly Zone: HostedZone;
 
-  constructor(accountStack: AccountStack, appEnv: string, props?: AppEnvStackProps) {
-    super(accountStack.projectApp, `Core-${accountStack.account}-${appEnv}-AppEnv`, {
+  constructor(account: IAccount, appEnv: string, props?: AppEnvStackProps) {
+    super(account.Project.App, `Core-${account.Account}-${appEnv}-AppEnv`, {
       ...props,
       //   env: {  TODO:
       //     account: accountStack.account,
@@ -36,12 +44,12 @@ export class AppEnvStack extends Stack implements IAppEnv {
       //   },
     });
 
-    this.accountStack = accountStack;
-    this.appEnv = appEnv;
+    this.Account = account;
+    this.AppEnv = appEnv;
 
-    this.vpc = this.accountStack.node.tryFindChild('SharedVpc') as IVpc;
-    if (!this.vpc) {
-      this.vpc = new Vpc(this.accountStack, 'SharedVpc', {
+    this.Vpc = this.Account.node.tryFindChild('SharedVpc') as Vpc;
+    if (!this.Vpc) {
+      this.Vpc = new Vpc(this.Account, 'SharedVpc', {
         cidr: '10.0.0.0/22',
         maxAzs: 3,
         subnetConfiguration: [
@@ -54,72 +62,84 @@ export class AppEnvStack extends Stack implements IAppEnv {
       });
 
       // TODO: move to internet endpoint Endpoints ?
-      this.vpc.addGatewayEndpoint('S3Gateway', {
+      this.Vpc.addGatewayEndpoint('S3Gateway', {
         service: GatewayVpcEndpointAwsService.S3,
-        subnets: [this.vpc.selectSubnets({ onePerAz: true })],
+        subnets: [this.Vpc.selectSubnets({ onePerAz: true })],
       });
-      this.vpc.addInterfaceEndpoint('EcsEndpoint', {
+      this.Vpc.addInterfaceEndpoint('EcsEndpoint', {
         service: InterfaceVpcEndpointAwsService.ECS,
       });
-      this.vpc.addInterfaceEndpoint('EcsAgentEndpoint', {
+      this.Vpc.addInterfaceEndpoint('EcsAgentEndpoint', {
         service: InterfaceVpcEndpointAwsService.ECS_AGENT,
       });
-      this.vpc.addInterfaceEndpoint('EcsTelemetryEndpoint', {
+      this.Vpc.addInterfaceEndpoint('EcsTelemetryEndpoint', {
         service: InterfaceVpcEndpointAwsService.ECS_TELEMETRY,
       });
-      this.vpc.addInterfaceEndpoint('EcrEndpoint', {
+      this.Vpc.addInterfaceEndpoint('EcrEndpoint', {
         service: InterfaceVpcEndpointAwsService.ECR,
       });
-      this.vpc.addInterfaceEndpoint('EcrDockerEndpoint', {
+      this.Vpc.addInterfaceEndpoint('EcrDockerEndpoint', {
         service: InterfaceVpcEndpointAwsService.ECR_DOCKER,
       });
+
+      RemoteVpc.export(this.Account.Account, this.Vpc);
     }
 
-    const cosmosZoneName = this.accountStack.projectApp.zone.zoneName;
-    this.zone = new HostedZone(this, 'HostedZone', {
-      zoneName: `${appEnv}.${cosmosZoneName}`.toLowerCase(),
+    const rootZoneName = this.Account.Project.Zone.zoneName;
+    this.Zone = new HostedZone(this, 'EnvZone', {
+      zoneName: `${appEnv}.${rootZoneName}`.toLowerCase(),
     });
+    RemoteZone.export(`${this.Account.Account}${this.AppEnv}`, this.Zone);
 
     new ZoneDelegationRecord(this, 'ZoneDelegation', {
-      zone: this.accountStack.projectApp.zone,
-      recordName: this.zone.zoneName,
-      nameServers: this.zone.hostedZoneNameServers as string[],
+      zone: this.Account.Project.Zone,
+      recordName: this.Zone.zoneName,
+      nameServers: this.Zone.hostedZoneNameServers as string[],
     });
   }
 }
 
 // ECS Target AppEnv
+export interface IEcsAppEnv extends IAppEnv {
+  Cluster: ICluster;
+  Alb: IApplicationLoadBalancer;
+  HttpListener: IApplicationListener;
+  // HttpsListener: IApplicationListener;
+}
+
 export interface EcsAppEnvStackProps extends AppEnvStackProps {}
 
-export class EcsAppEnvStack extends AppEnvStack {
-  readonly cluster: Cluster;
-  readonly alb: ApplicationLoadBalancer;
-  readonly httpListener: ApplicationListener;
-  readonly httpsListener: ApplicationListener;
-  readonly targetGroup: ApplicationTargetGroup;
+export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
+  readonly Cluster: Cluster;
+  readonly Alb: ApplicationLoadBalancer;
+  readonly HttpListener: ApplicationListener;
+  // readonly HttpsListener: ApplicationListener;
 
-  constructor(scope: AccountStack, appEnv: string, props?: EcsAppEnvStackProps) {
-    super(scope, appEnv, props);
+  constructor(account: IAccount, appEnv: string, props?: EcsAppEnvStackProps) {
+    super(account, appEnv, props);
 
-    this.cluster = new Cluster(this, 'Cluster', {
-      vpc: this.vpc,
+    this.Cluster = new Cluster(this, 'Cluster', {
+      vpc: this.Vpc,
+      clusterName: `Core-${account.Account}-${appEnv}-Cluster`,
     });
 
-    this.cluster.addCapacity('Capacity', {
+    this.Cluster.addCapacity('Capacity', {
       instanceType: new InstanceType('t2.medium'),
       desiredCapacity: 1,
     });
 
-    this.alb = new ApplicationLoadBalancer(this, 'Alb', {
-      vpc: this.vpc,
+    this.Alb = new ApplicationLoadBalancer(this, 'Alb', {
+      vpc: this.Vpc,
     });
-    this.targetGroup = new ApplicationTargetGroup(this, 'AppTargetGroup', {
-      vpc: this.vpc,
-      port: 80,
-    })
-    this.httpListener = this.alb.addListener('HttpListener', {
-      port: 80,
-      defaultTargetGroups: [this.targetGroup]
+    this.HttpListener = this.Alb.addListener('HttpListener', {
+      protocol: ApplicationProtocol.HTTP,
+      defaultTargetGroups: [
+        new ApplicationTargetGroup(this, 'DefaultTargetGroup', {
+          vpc: this.Vpc,
+          protocol: ApplicationProtocol.HTTP,
+          targetType: TargetType.INSTANCE,
+        }),
+      ],
     });
 
     // TODO:
@@ -129,30 +149,41 @@ export class EcsAppEnvStack extends AppEnvStack {
     //   open: true
     // });
 
-    // TODO: Remove, for testing
-    const taskDefinition = new Ec2TaskDefinition(this, 'HealthCheckTask');
-    taskDefinition
-      .addContainer('HealthCheckContainer', {
-        image: ContainerImage.fromAsset(`${__dirname}/../assets/healthcheck`),
-        memoryLimitMiB: 512,
-      })
-      .addPortMappings({
-        containerPort: 80,
-        protocol: Protocol.TCP,
-      });
+    RemoteCluster.export(`${this.Account.Account}${this.AppEnv}`, this.Cluster);
+    RemoteAlb.export(`${this.Account.Account}${this.AppEnv}`, this.Alb);
+    RemoteApplicationListener.export(`${this.Account.Account}${this.AppEnv}`, this.HttpListener);
+  }
+}
 
-    const ecsService = new Ec2Service(this, 'HealthCheckService', {
-      cluster: this.cluster,
-      taskDefinition,
-    });
+// Import
 
-    this.httpListener.addTargets('HealthCheck', {
-      port: 80,
-      targets: [
-        ecsService.loadBalancerTarget({
-          containerName: 'HealthCheckContainer',
-        }),
-      ],
-    });
+export class ImportedAppEnv extends Construct implements IAppEnv {
+  readonly Account: IAccount;
+  readonly AppEnv: string;
+  readonly Vpc: IVpc;
+  readonly Zone: IHostedZone;
+
+  constructor(scope: Construct, account: IAccount, appEnv: string) {
+    super(scope, `Core-${account.Account}-${appEnv}-AppEnv`);
+
+    this.Account = account;
+    this.AppEnv = appEnv;
+    this.Vpc = RemoteVpc.import(this, this.Account.Account, 'SharedVpc', { hasIsolated: true });
+    this.Zone = RemoteZone.import(this, `${this.Account.Account}${this.AppEnv}`, 'EnvZone');
+  }
+}
+
+export class ImportedEcsAppEnv extends ImportedAppEnv implements IEcsAppEnv {
+  readonly Cluster: ICluster;
+  readonly Alb: IApplicationLoadBalancer;
+  readonly HttpListener: IApplicationListener;
+  // readonly HttpsListener: IApplicationListener;
+
+  constructor(scope: Construct, account: IAccount, appEnv: string) {
+    super(scope, account, appEnv);
+
+    this.Cluster = RemoteCluster.import(this, `${this.Account.Account}${this.AppEnv}`, 'Cluster', this.Vpc);
+    this.Alb = RemoteAlb.import(this, `${this.Account.Account}${this.AppEnv}`, 'Alb');
+    this.HttpListener = RemoteApplicationListener.import(this, `${this.Account.Account}${this.AppEnv}`, 'HttpListener');
   }
 }
