@@ -13,7 +13,7 @@ import {
   ApplicationListenerRule,
   ApplicationListenerRuleProps,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IEcsAppEnv } from '@cosmoscarnival/core/lib';
+import { IEcsAppEnv } from '@cosmoscarnival/core';
 
 export interface EcsServiceProps {
   ecsAppEnv: IEcsAppEnv;
