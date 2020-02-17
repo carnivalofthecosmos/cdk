@@ -1,4 +1,6 @@
-import { Construct } from '@aws-cdk/core';
+import { Construct, RemovalPolicy, PhysicalName } from '@aws-cdk/core';
+import { Bucket, BucketEncryption } from "@aws-cdk/aws-s3";
+import { Key } from "@aws-cdk/aws-kms";
 import { Repository, IRepository } from '@aws-cdk/aws-codecommit';
 import { Pipeline, IPipeline, Artifact } from '@aws-cdk/aws-codepipeline';
 import {
@@ -21,6 +23,16 @@ export class CdkPipeline extends Construct {
     super(scope, id);
 
     const { codeRepo, branch = 'master' } = props;
+    // Create a new encrypted bucket and use that to create Pipeline. 
+    const EncryptionKey = new Key(this, 'ArtifactEncryptionKey', {
+      removalPolicy: RemovalPolicy.RETAIN
+    });
+    const ArtifactBucket = new Bucket(this, 'PipelineArtifactBucket', {
+      bucketName: PhysicalName.GENERATE_IF_NEEDED,
+      encryption: BucketEncryption.KMS,
+      encryptionKey: EncryptionKey,
+      removalPolicy: RemovalPolicy.DESTROY,
+    });
 
     const cdkBuild = new PipelineProject(this, 'CdkBuild', {
       buildSpec: BuildSpec.fromObject({
@@ -52,6 +64,7 @@ export class CdkPipeline extends Construct {
     const cdkBuildOutput = new Artifact('CdkBuildOutput');
 
     this.Pipeline = new Pipeline(this, 'Pipeline', {
+      artifactBucket: ArtifactBucket,
       stages: [
         {
           stageName: 'Source',

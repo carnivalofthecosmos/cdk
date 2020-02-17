@@ -6,3 +6,4 @@ import { CoreBootstrapStack } from '../../lib';
 const app = new App();
 
 new CoreBootstrapStack(app)
+
