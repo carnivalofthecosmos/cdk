@@ -1,4 +1,6 @@
 {
-  "packages": ["packages/@cosmoscarnival/*"],
-  "version": "0.1.0"
+  "packages": [
+    "packages/@cosmoscarnival/*"
+  ],
+  "version": "0.1.1-alpha.0"
 }
