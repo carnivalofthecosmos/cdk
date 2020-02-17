@@ -9,6 +9,11 @@
     "package.json",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carnivalofthecosmos/cdk.git",
+    "directory": "packages/@cosmoscarnival/service"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -45,5 +50,6 @@
     "ts-jest": "^24.1.0",
     "tslint": "^6.0.0",
     "typescript": "^3.7.2"
-  }
+  },
+  "gitHead": "1d49a7ac25a48717ca74181a000f42a4b02825dc"
 }

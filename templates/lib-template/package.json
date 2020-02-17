@@ -9,6 +9,11 @@
     "package.json",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carnivalofthecosmos/cdk.git",
+    "directory": "packages/@cosmoscarnival/template"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
