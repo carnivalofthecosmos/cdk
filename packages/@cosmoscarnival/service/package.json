@@ -1,6 +1,6 @@
 {
   "name": "@cosmoscarnival/service",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -27,7 +27,7 @@
     "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.23.0",
     "@aws-cdk/aws-route53": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
-    "@cosmoscarnival/core": "^0.0.0"
+    "@cosmoscarnival/core": "^0.0.1-alpha.0"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.23.0",
