@@ -16,7 +16,7 @@ import {
 import { IEcsAppEnv } from '@carnivalofthecosmos/core';
 
 export interface EcsServiceProps {
-  ecsAppEnv: IEcsAppEnv;
+  coreAppEnv: IEcsAppEnv;
   container: ContainerDefinitionOptions & { port?: PortMapping };
   service: Partial<Ec2ServiceProps>;
   routing: {
@@ -33,7 +33,7 @@ export class EcsService extends Construct {
   constructor(scope: Construct, id: string, props: EcsServiceProps) {
     super(scope, id);
 
-    const { ecsAppEnv, container, service, routing } = props;
+    const { coreAppEnv, container, service, routing } = props;
 
     this.TaskDefinition = new Ec2TaskDefinition(this, 'Task', {
       family: `${id}-Task`,
@@ -52,12 +52,12 @@ export class EcsService extends Construct {
       desiredCount: 1,
       ...service,
       taskDefinition: this.TaskDefinition,
-      cluster: ecsAppEnv.Cluster,
+      cluster: coreAppEnv.Cluster,
       serviceName: `${id}-Service`,
     });
 
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
-      vpc: ecsAppEnv.Vpc,
+      vpc: coreAppEnv.Vpc,
       targetGroupName: `${id}-TargetGroup`,
       protocol: ApplicationProtocol.HTTP,
       targets: [
@@ -69,7 +69,7 @@ export class EcsService extends Construct {
 
     new ApplicationListenerRule(this, 'ServiceRule', {
       ...routing,
-      listener: ecsAppEnv.HttpListener,
+      listener: coreAppEnv.HttpListener,
       targetGroups: [targetGroup],
     });
   }

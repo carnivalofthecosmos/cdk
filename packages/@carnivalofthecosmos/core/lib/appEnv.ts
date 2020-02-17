@@ -36,7 +36,7 @@ export class AppEnvStack extends Stack implements IAppEnv {
   readonly Zone: HostedZone;
 
   constructor(account: IAccount, appEnv: string, props?: AppEnvStackProps) {
-    super(account.Project.App, `Core-${account.Account}-${appEnv}-AppEnv`, {
+    super(account.Project.Scope, `Core-${account.Account}-${appEnv}-AppEnv`, {
       ...props,
       //   env: {  TODO:
       //     account: accountStack.account,

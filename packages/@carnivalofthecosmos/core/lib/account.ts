@@ -1,5 +1,5 @@
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
-import { IProject, ProjectStack } from '.';
+import { IProject } from '.';
 
 export interface IAccount extends Construct {
   Project: IProject;
@@ -13,7 +13,7 @@ export class AccountStack extends Stack implements IAccount {
   readonly Account: string;
 
   constructor(project: IProject, account: string, props?: AccountStackProps) {
-    super(project.App, `Core-${account}-Account`, props);
+    super(project.Scope, `Core-${account}-Account`, props);
 
     this.Project = project;
     this.Account = account;
