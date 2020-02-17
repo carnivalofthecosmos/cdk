@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import { App, Construct } from '@aws-cdk/core';
-import { ConsumerStack, ConsumerStackProps } from '@cosmoscarnival/core/lib';
+import { ConsumerStack, ConsumerStackProps } from '@carnivalofthecosmos/core/lib';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { ContainerImage } from '@aws-cdk/aws-ecs';
 import { EcsService } from '../../lib/index';

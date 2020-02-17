@@ -17,6 +17,6 @@
     "aws-cdk": "1.23.0",
     "ts-node": "^8.1.0",
     "typescript": "~3.7.2",
-    "@cosmoscarnival/core": "../../core"
+    "@carnivalofthecosmos/core": "../../core"
   }
 }

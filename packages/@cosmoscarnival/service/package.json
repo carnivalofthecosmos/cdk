@@ -1,5 +1,5 @@
 {
-  "name": "@cosmoscarnival/service",
+  "name": "@carnivalofthecosmos/service",
   "version": "0.0.1-alpha.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/carnivalofthecosmos/cdk.git",
-    "directory": "packages/@cosmoscarnival/service"
+    "directory": "packages/@carnivalofthecosmos/service"
   },
   "scripts": {
     "build": "tsc",
@@ -32,7 +32,7 @@
     "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.23.0",
     "@aws-cdk/aws-route53": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
-    "@cosmoscarnival/core": "^0.0.1-alpha.1"
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.1"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.23.0",
@@ -50,6 +50,5 @@
     "ts-jest": "^24.1.0",
     "tslint": "^6.0.0",
     "typescript": "^3.7.2"
-  },
-  "gitHead": "1d49a7ac25a48717ca74181a000f42a4b02825dc"
+  }
 }

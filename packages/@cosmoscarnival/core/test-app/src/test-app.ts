@@ -6,7 +6,7 @@ import { ProjectStack, AccountStack, EcsAppEnvStack } from '../../lib/index';
 const app = new App();
 
 const projectStack = new ProjectStack(app, 'Devops', {
-  tld: 'cosmoscarnival.com',
+  tld: 'carnivalofthecosmos.com',
 });
 
 const mgtAccount = new AccountStack(projectStack, 'Mgt');
