@@ -28,12 +28,13 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
       },
     });
 
-    const buildRole = this.CdkPipeline.Build.role;
-    if (!buildRole) throw new Error('Build role required.');
-    buildRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyName(this, 'CfAccess', 'AWSCloudFormationFullAccess'));
-    buildRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyName(this, 'Route53Access', 'AmazonRoute53FullAccess'));
-    buildRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyName(this, 'EcsAccess', 'AmazonECS_FullAccess'));
-    buildRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyName(this, 'VpcAccess', 'AmazonVPCFullAccess'));
-    buildRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyName(this, 'Ec2Access', 'AmazonEC2FullAccess'));
+    const addBuildManagedPolicy = (name: string) => {
+      this.CdkPipeline.Build.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
+    };
+    addBuildManagedPolicy('AWSCloudFormationFullAccess');
+    addBuildManagedPolicy('AmazonRoute53FullAccess');
+    addBuildManagedPolicy('AmazonECS_FullAccess');
+    addBuildManagedPolicy('AmazonVPCFullAccess');
+    addBuildManagedPolicy('AmazonEC2FullAccess');
   }
 }
