@@ -27,6 +27,7 @@
   "dependencies": {
     "@aws-cdk/aws-codecommit": "^1.23.0",
     "@aws-cdk/aws-codepipeline": "^1.23.0",
+    "@aws-cdk/aws-iam": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
     "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.5"
   },
