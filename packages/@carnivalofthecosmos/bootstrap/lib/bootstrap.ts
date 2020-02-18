@@ -18,7 +18,7 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
     super(scope, `Core-Bootstrap`, props);
 
     this.CodeRepo = new Repository(this, 'CoreCdkRepo', {
-      repositoryName: `core-project-cdk`, // TODO: core-cdk-repo
+      repositoryName: `core-cdk-repo`,
     });
 
     this.CdkPipeline = new CdkPipeline(this, 'CoreCdkPipeline', {
@@ -31,10 +31,14 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
     const addBuildManagedPolicy = (name: string) => {
       this.CdkPipeline.Build.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
     };
-    addBuildManagedPolicy('AWSCloudFormationFullAccess');
-    addBuildManagedPolicy('AmazonRoute53FullAccess');
-    addBuildManagedPolicy('AmazonECS_FullAccess');
-    addBuildManagedPolicy('AmazonVPCFullAccess');
-    addBuildManagedPolicy('AmazonEC2FullAccess');
+
+    // TODO: get the right roles !!
+    // addBuildManagedPolicy('AWSCloudFormationFullAccess');
+    // addBuildManagedPolicy('AmazonRoute53FullAccess');
+    // addBuildManagedPolicy('AmazonECS_FullAccess');
+    // addBuildManagedPolicy('AmazonVPCFullAccess');
+    // addBuildManagedPolicy('AmazonEC2FullAccess');
+
+    addBuildManagedPolicy('AdministratorAccess'); // FIXME:
   }
 }
