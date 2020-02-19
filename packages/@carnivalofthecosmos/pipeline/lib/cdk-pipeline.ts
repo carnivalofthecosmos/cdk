@@ -23,6 +23,7 @@ export interface CdkPipelineProps {
   name?: string;
   buildRole?: IRole;
   buildEnvs?: BuildEnvironmentVariables;
+  // TODO: stacks: string[]
 }
 
 export class CdkPipeline extends Construct {

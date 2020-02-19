@@ -1,1 +1,7 @@
-export { IBootstrap, CoreBootstrapStack, CoreBootstrapStackProps } from './bootstrap';
+export {
+  IBootstrap,
+  CoreBootstrapStack,
+  CoreBootstrapStackProps,
+  ConsumerBootstrapStack,
+  ConsumerBootstrapStackProps,
+} from './bootstrap';

@@ -54,7 +54,9 @@ export class AppEnvStack extends Stack implements IAppEnv {
 
     this.Vpc = this.Account.node.tryFindChild('SharedVpc') as Vpc;
     if (!this.Vpc) {
-      if (!networkBuilder) throw new Error('NetworkBuilder is required for first app env defined.');
+      if (!networkBuilder) {
+        throw new Error(`NetworkBuilder is required for first app env defined (Env: ${this.AppEnv}?).`);
+      }
 
       this.Vpc = new Vpc(this.Account, 'SharedVpc', {
         cidr: networkBuilder.addSubnet(24),

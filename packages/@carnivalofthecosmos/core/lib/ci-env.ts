@@ -28,7 +28,7 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
   readonly HttpListener: ApplicationListener;
 
   constructor(account: IAccount, props: CiEnvStackProps) {
-    super(account.Project.Scope, `Core-${account.Account}-CiEnv`);
+    super(account.Project.Scope, `Core-${account.Account}-Ci-Env`);
 
     const { networkBuilder } = props;
 
@@ -101,7 +101,7 @@ export class ImportedCiEnv extends Construct implements IEcsAppEnv {
   readonly HttpListener: IApplicationListener;
 
   constructor(scope: Construct, account: IAccount) {
-    super(scope, `Core-${account.Account}-CiEnv`);
+    super(scope, `Core-${account.Account}-Ci-Env`);
 
     this.Account = account;
     this.AppEnv = 'Ci';

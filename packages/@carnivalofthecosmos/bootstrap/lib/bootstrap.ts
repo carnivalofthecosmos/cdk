@@ -42,3 +42,39 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
     addBuildManagedPolicy('AdministratorAccess'); // FIXME:
   }
 }
+
+export interface ConsumerBootstrapStackProps extends StackProps {}
+
+export class ConsumerBootstrapStack extends Stack implements IBootstrap {
+  readonly CodeRepo: IRepository;
+  readonly CdkPipeline: CdkPipeline;
+
+  constructor(scope: Construct, project: string, props?: CoreBootstrapStackProps) {
+    super(scope, `App-${project}-Bootstrap`, props);
+
+    this.CodeRepo = new Repository(this, 'AppCdkRepo', {
+      repositoryName: `app-${project}-cdk-repo`,
+    });
+
+    this.CdkPipeline = new CdkPipeline(this, 'AppCdkPipeline', {
+      name: `${project}CdkPipeline`,
+      codeRepo: this.CodeRepo,
+      buildEnvs: {
+        NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
+      },
+    });
+
+    const addBuildManagedPolicy = (name: string) => {
+      this.CdkPipeline.Build.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
+    };
+
+    // TODO: get the right roles !!
+    // addBuildManagedPolicy('AWSCloudFormationFullAccess');
+    // addBuildManagedPolicy('AmazonRoute53FullAccess');
+    // addBuildManagedPolicy('AmazonECS_FullAccess');
+    // addBuildManagedPolicy('AmazonVPCFullAccess');
+    // addBuildManagedPolicy('AmazonEC2FullAccess');
+
+    addBuildManagedPolicy('AdministratorAccess'); // FIXME:
+  }
+}
