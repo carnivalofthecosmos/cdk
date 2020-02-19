@@ -15,7 +15,6 @@ export class MyEnvStack extends ConsumerEcsAppEnvStack {
     const ecr = Repository.fromRepositoryName(this, 'ecr', 'cdk/test');
 
     new EcsService(this, 'Frontend', {
-      coreAppEnv: this.CoreAppEnv,
       container: {
         image: ContainerImage.fromEcrRepository(ecr, 'latest'),
       },

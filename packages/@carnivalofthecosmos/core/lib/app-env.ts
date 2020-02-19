@@ -18,7 +18,8 @@ import {
   IApplicationLoadBalancer,
   IApplicationListener,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IAccount, AccountStack, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
+import { NetworkBuilder } from '@aws-cdk/aws-ec2/lib/network-util';
+import { IAccount, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
 
 export interface IAppEnv extends Construct {
   Account: IAccount;
@@ -27,7 +28,9 @@ export interface IAppEnv extends Construct {
   Zone: IHostedZone;
 }
 
-export interface AppEnvStackProps extends StackProps {}
+export interface AppEnvStackProps extends StackProps {
+  networkBuilder?: NetworkBuilder;
+}
 
 export class AppEnvStack extends Stack implements IAppEnv {
   readonly Account: IAccount;
@@ -44,13 +47,17 @@ export class AppEnvStack extends Stack implements IAppEnv {
       //   },
     });
 
+    const { networkBuilder } = props || {};
+
     this.Account = account;
     this.AppEnv = appEnv;
 
     this.Vpc = this.Account.node.tryFindChild('SharedVpc') as Vpc;
     if (!this.Vpc) {
+      if (!networkBuilder) throw new Error('NetworkBuilder is required for first app env defined.');
+
       this.Vpc = new Vpc(this.Account, 'SharedVpc', {
-        cidr: '10.0.0.0/22',
+        cidr: networkBuilder.addSubnet(24),
         maxAzs: 3,
         subnetConfiguration: [
           {
@@ -86,16 +93,16 @@ export class AppEnvStack extends Stack implements IAppEnv {
     }
 
     const rootZoneName = this.Account.Project.Zone.zoneName;
-    this.Zone = new HostedZone(this, 'EnvZone', {
+    this.Zone = new HostedZone(this, 'Zone', {
       zoneName: `${appEnv}.${rootZoneName}`.toLowerCase(),
     });
-    RemoteZone.export(`${this.Account.Account}${this.AppEnv}`, this.Zone);
-
     new ZoneDelegationRecord(this, 'ZoneDelegation', {
       zone: this.Account.Project.Zone,
       recordName: this.Zone.zoneName,
       nameServers: this.Zone.hostedZoneNameServers as string[],
     });
+
+    RemoteZone.export(`${this.Account.Account}${this.AppEnv}`, this.Zone);
   }
 }
 
@@ -120,12 +127,14 @@ export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
 
     this.Cluster = new Cluster(this, 'Cluster', {
       vpc: this.Vpc,
-      clusterName: `Core-${account.Account}-${appEnv}-Cluster`,
+      clusterName: `Core-${this.Account.Account}-${this.AppEnv}-Cluster`,
     });
 
     this.Cluster.addCapacity('Capacity', {
       instanceType: new InstanceType('t2.medium'),
       desiredCapacity: 1,
+      minCapacity: 1,
+      maxCapacity: 5,
     });
 
     this.Alb = new ApplicationLoadBalancer(this, 'Alb', {
@@ -169,7 +178,7 @@ export class ImportedAppEnv extends Construct implements IAppEnv {
     this.Account = account;
     this.AppEnv = appEnv;
     this.Vpc = RemoteVpc.import(this, this.Account.Account, 'SharedVpc', { hasIsolated: true });
-    this.Zone = RemoteZone.import(this, `${this.Account.Account}${this.AppEnv}`, 'EnvZone');
+    this.Zone = RemoteZone.import(this, `${this.Account.Account}${this.AppEnv}`, 'Zone');
   }
 }
 
