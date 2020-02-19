@@ -62,7 +62,7 @@ export class CdkPipeline extends Construct {
             commands: ['npm install'],
           },
           build: {
-            commands: ['npm run cdk synth'],
+            commands: ['npx cdk synth'],
           },
         },
         artifacts: {

@@ -17,6 +17,7 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
   constructor(scope: Construct, props?: CoreBootstrapStackProps) {
     super(scope, `Core-Bootstrap`, props);
 
+    // TODO: Deletion policy ?
     this.CodeRepo = new Repository(this, 'CoreCdkRepo', {
       repositoryName: `core-cdk-repo`,
     });
@@ -52,8 +53,9 @@ export class ConsumerBootstrapStack extends Stack implements IBootstrap {
   constructor(scope: Construct, project: string, props?: CoreBootstrapStackProps) {
     super(scope, `App-${project}-Bootstrap`, props);
 
+    // TODO: Deletion policy ?
     this.CodeRepo = new Repository(this, 'AppCdkRepo', {
-      repositoryName: `app-${project}-cdk-repo`,
+      repositoryName: `app-${project}-cdk-repo`.toLocaleLowerCase(),
     });
 
     this.CdkPipeline = new CdkPipeline(this, 'AppCdkPipeline', {
