@@ -5,10 +5,12 @@ import { IRepository } from '@aws-cdk/aws-codecommit';
 import { Pipeline, Artifact } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import {
-  PipelineProject,
+  Project,
   BuildSpec,
   LinuxBuildImage,
   BuildEnvironmentVariable,
+  Source,
+  Artifacts,
   BuildEnvironmentVariableType,
 } from '@aws-cdk/aws-codebuild';
 import { IRole } from '@aws-cdk/aws-iam';
@@ -18,51 +20,56 @@ export interface BuildEnvironmentVariables {
 }
 
 export interface CdkPipelineProps {
-  codeRepo: IRepository;
-  branch?: string;
   name?: string;
-  buildRole?: IRole;
-  buildEnvs?: BuildEnvironmentVariables;
-  // TODO: stacks: string[]
+  codeRepo: IRepository;
+  codeBranch?: string;
+  deployRole?: IRole;
+  deployEnvs?: BuildEnvironmentVariables;
+  deployStacks?: string[];
 }
 
 export class CdkPipeline extends Construct {
-  readonly Build: PipelineProject;
+  readonly Deploy: Project;
   readonly Pipeline: Pipeline;
 
   constructor(scope: Construct, id: string, props: CdkPipelineProps) {
     super(scope, id);
 
-    const { codeRepo, branch = 'master', name = id, buildRole, buildEnvs } = props;
+    const {
+      name = id,
+      codeRepo,
+      codeBranch = 'master',
+      deployRole = undefined,
+      deployEnvs = undefined,
+      deployStacks = [],
+    } = props;
 
-    // Create a new encrypted bucket and use that to create Pipeline.
-    const EncryptionKey = new Key(this, 'ArtifactEncryptionKey', {
+    const artifactBucket = new Bucket(this, 'CdkArtifactBucket', {
+      bucketName: PhysicalName.GENERATE_IF_NEEDED,
+      encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.RETAIN,
     });
 
-    const ArtifactBucket = new Bucket(this, 'PipelineArtifactBucket', {
-      bucketName: PhysicalName.GENERATE_IF_NEEDED,
-      encryption: BucketEncryption.KMS,
-      encryptionKey: EncryptionKey,
-      removalPolicy: RemovalPolicy.DESTROY,
-    });
-
-    this.Build = new PipelineProject(this, 'Build', {
-      projectName: `${name}Build`,
-      role: buildRole,
+    this.Deploy = new Project(this, 'Deploy', {
+      projectName: `${name}Deploy`,
+      role: deployRole,
+      source: Source.codeCommit({
+        repository: codeRepo,
+        branchOrRef: codeBranch,
+      }),
       buildSpec: BuildSpec.fromObject({
         version: '0.2',
         phases: {
           install: {
             'runtime-versions': {
-              nodejs: '10',
+              nodejs: '12',
             },
           },
           pre_build: {
             commands: ['npm install'],
           },
           build: {
-            commands: ['npx cdk synth'],
+            commands: ['npx cdk synth', 'npx cdk diff', 'npx cdk deploy'],
           },
         },
         artifacts: {
@@ -71,17 +78,29 @@ export class CdkPipeline extends Construct {
         },
       }),
       environment: {
-        buildImage: LinuxBuildImage.STANDARD_2_0,
-        environmentVariables: buildEnvs,
+        buildImage: LinuxBuildImage.STANDARD_3_0,
+        environmentVariables: {
+          ...deployEnvs,
+          STACKS: {
+            type: BuildEnvironmentVariableType.PLAINTEXT,
+            value: '',
+          },
+        },
       },
+      artifacts: Artifacts.s3({
+        bucket: artifactBucket,
+        name: 'cdk.templates',
+        packageZip: true,
+        includeBuildId: true,
+      }),
     });
 
-    const sourceOutput = new Artifact();
+    const sourceOutput = new Artifact('CdkCodeOutput');
     const cdkBuildOutput = new Artifact('CdkBuildOutput');
 
     this.Pipeline = new Pipeline(this, 'Pipeline', {
       pipelineName: name,
-      artifactBucket: ArtifactBucket,
+      artifactBucket: artifactBucket,
       stages: [
         {
           stageName: 'Source',
@@ -89,19 +108,25 @@ export class CdkPipeline extends Construct {
             new CodeCommitSourceAction({
               actionName: 'Code_Checkout',
               repository: codeRepo,
-              branch: branch,
+              branch: codeBranch,
               output: sourceOutput,
             }),
           ],
         },
         {
-          stageName: 'Build',
+          stageName: 'Deploy',
           actions: [
             new CodeBuildAction({
-              actionName: 'CDK_Build',
-              project: this.Build,
+              actionName: 'CDK_Deploy',
+              project: this.Deploy,
               input: sourceOutput,
               outputs: [cdkBuildOutput],
+              environmentVariables: {
+                STACKS: {
+                  type: BuildEnvironmentVariableType.PLAINTEXT,
+                  value: deployStacks.join(''),
+                },
+              },
             }),
           ],
         },

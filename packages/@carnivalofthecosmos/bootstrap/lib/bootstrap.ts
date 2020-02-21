@@ -24,13 +24,14 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
 
     this.CdkPipeline = new CdkPipeline(this, 'CoreCdkPipeline', {
       codeRepo: this.CodeRepo,
-      buildEnvs: {
+      deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
       },
+      deployStacks: [`Core-*`],
     });
 
     const addBuildManagedPolicy = (name: string) => {
-      this.CdkPipeline.Build.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
+      this.CdkPipeline.Deploy.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
     };
 
     // TODO: get the right roles !!
@@ -61,13 +62,14 @@ export class ConsumerBootstrapStack extends Stack implements IBootstrap {
     this.CdkPipeline = new CdkPipeline(this, 'AppCdkPipeline', {
       name: `${project}CdkPipeline`,
       codeRepo: this.CodeRepo,
-      buildEnvs: {
+      deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
       },
+      deployStacks: [`App-${project}-*`],
     });
 
     const addBuildManagedPolicy = (name: string) => {
-      this.CdkPipeline.Build.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
+      this.CdkPipeline.Deploy.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
     };
 
     // TODO: get the right roles !!
