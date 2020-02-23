@@ -69,7 +69,7 @@ export class CdkPipeline extends Construct {
             commands: ['npm install'],
           },
           build: {
-            commands: ['npx cdk synth', 'npx cdk diff', 'npx cdk deploy'],
+            commands: ['npx cdk synth ${STACKS}', 'npx cdk diff ${STACKS}', 'npx cdk deploy ${STACKS}'],
           },
         },
         artifacts: {
@@ -89,9 +89,10 @@ export class CdkPipeline extends Construct {
       },
       artifacts: Artifacts.s3({
         bucket: artifactBucket,
+        path: 'CodeBuild',
+        includeBuildId: true,
         name: 'cdk.templates',
         packageZip: true,
-        includeBuildId: true,
       }),
     });
 
