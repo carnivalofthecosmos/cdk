@@ -9,6 +9,25 @@ export {
   EcsAppEnvStackProps,
   ImportedAppEnv,
   ImportedEcsAppEnv,
-} from './appEnv';
-export { RemoteZone, RemoteVpc, RemoteCluster, RemoteAlb, RemoteApplicationListener } from './remote';
-export { ConsumerStack, ConsumerStackProps } from './comsumer';
+} from './app-env';
+export { CiEnvStack, CiEnvStackProps, ImportedCiEnv } from './ci-env';
+export {
+  RemoteZone,
+  RemoteVpc,
+  RemoteCluster,
+  RemoteAlb,
+  RemoteApplicationListener,
+  RemoteCodeRepo,
+  RemoteBuildProject,
+} from './remote';
+export {
+  IConsumerProject,
+  IConsumerAccount,
+  IConsumerAppEnv,
+  IConsumerEcsAppEnv,
+  ConsumerProjectStack,
+  ConsumerAccountStack,
+  ConsumerAppEnvStack,
+  ConsumerEcsAppEnvStack,
+  ConsumerCiEnvStack,
+} from './consumer';

@@ -13,10 +13,9 @@ import {
   ApplicationListenerRule,
   ApplicationListenerRuleProps,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IEcsAppEnv } from '@carnivalofthecosmos/core';
+import { IEcsAppEnv, IConsumerEcsAppEnv } from '@carnivalofthecosmos/core';
 
 export interface EcsServiceProps {
-  ecsAppEnv: IEcsAppEnv;
   container: ContainerDefinitionOptions & { port?: PortMapping };
   service: Partial<Ec2ServiceProps>;
   routing: {
@@ -25,18 +24,20 @@ export interface EcsServiceProps {
   };
 }
 
+// TODO: Split into Generic version and Consumer Version
 export class EcsService extends Construct {
   readonly TaskDefinition: Ec2TaskDefinition;
   readonly Service: Ec2Service;
   readonly ApplicationTargetGroup: ApplicationTargetGroup;
 
-  constructor(scope: Construct, id: string, props: EcsServiceProps) {
-    super(scope, id);
+  constructor(appEnv: IConsumerEcsAppEnv, id: string, props: EcsServiceProps) {
+    super(appEnv, id);
 
-    const { ecsAppEnv, container, service, routing } = props;
+    const projectName = appEnv.Account.Project.Name;
+    const { container, service, routing } = props;
 
     this.TaskDefinition = new Ec2TaskDefinition(this, 'Task', {
-      family: `${id}-Task`,
+      family: `${projectName}-${id}-Task`,
     });
 
     this.TaskDefinition.addContainer('AppContainer', {
@@ -52,13 +53,13 @@ export class EcsService extends Construct {
       desiredCount: 1,
       ...service,
       taskDefinition: this.TaskDefinition,
-      cluster: ecsAppEnv.Cluster,
-      serviceName: `${id}-Service`,
+      cluster: appEnv.CoreAppEnv.Cluster,
+      serviceName: `${projectName}-${id}-Service`,
     });
 
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
-      vpc: ecsAppEnv.Vpc,
-      targetGroupName: `${id}-TargetGroup`,
+      vpc: appEnv.CoreAppEnv.Vpc,
+      targetGroupName: `${projectName}-${id}-TargetGroup`,
       protocol: ApplicationProtocol.HTTP,
       targets: [
         this.Service.loadBalancerTarget({
@@ -69,7 +70,7 @@ export class EcsService extends Construct {
 
     new ApplicationListenerRule(this, 'ServiceRule', {
       ...routing,
-      listener: ecsAppEnv.HttpListener,
+      listener: appEnv.CoreAppEnv.HttpListener,
       targetGroups: [targetGroup],
     });
   }

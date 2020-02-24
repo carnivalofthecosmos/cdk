@@ -18,25 +18,28 @@ import {
   IApplicationLoadBalancer,
   IApplicationListener,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IAccount, AccountStack, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
+import { NetworkBuilder } from '@aws-cdk/aws-ec2/lib/network-util';
+import { IAccount, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
 
 export interface IAppEnv extends Construct {
   Account: IAccount;
-  AppEnv: string;
+  Name: string;
   Vpc: IVpc;
   Zone: IHostedZone;
 }
 
-export interface AppEnvStackProps extends StackProps {}
+export interface AppEnvStackProps extends StackProps {
+  networkBuilder?: NetworkBuilder;
+}
 
 export class AppEnvStack extends Stack implements IAppEnv {
   readonly Account: IAccount;
-  readonly AppEnv: string;
+  readonly Name: string;
   readonly Vpc: Vpc;
   readonly Zone: HostedZone;
 
-  constructor(account: IAccount, appEnv: string, props?: AppEnvStackProps) {
-    super(account.Project.App, `Core-${account.Account}-${appEnv}-AppEnv`, {
+  constructor(account: IAccount, name: string, props?: AppEnvStackProps) {
+    super(account.Project.Scope, `Core-${account.Name}-${name}-AppEnv`, {
       ...props,
       //   env: {  TODO:
       //     account: accountStack.account,
@@ -44,17 +47,23 @@ export class AppEnvStack extends Stack implements IAppEnv {
       //   },
     });
 
+    const { networkBuilder } = props || {};
+
     this.Account = account;
-    this.AppEnv = appEnv;
+    this.Name = name;
 
     this.Vpc = this.Account.node.tryFindChild('SharedVpc') as Vpc;
     if (!this.Vpc) {
+      if (!networkBuilder) {
+        throw new Error(`NetworkBuilder is required for first app env defined (Env: ${this.Name}?).`);
+      }
+
       this.Vpc = new Vpc(this.Account, 'SharedVpc', {
-        cidr: '10.0.0.0/22',
+        cidr: networkBuilder.addSubnet(24),
         maxAzs: 3,
         subnetConfiguration: [
           {
-            name: 'Core',
+            name: 'Main',
             subnetType: SubnetType.ISOLATED,
             cidrMask: 26,
           },
@@ -82,20 +91,20 @@ export class AppEnvStack extends Stack implements IAppEnv {
         service: InterfaceVpcEndpointAwsService.ECR_DOCKER,
       });
 
-      RemoteVpc.export(this.Account.Account, this.Vpc);
+      RemoteVpc.export(`Core${this.Account.Name}`, this.Vpc);
     }
 
     const rootZoneName = this.Account.Project.Zone.zoneName;
-    this.Zone = new HostedZone(this, 'EnvZone', {
-      zoneName: `${appEnv}.${rootZoneName}`.toLowerCase(),
+    this.Zone = new HostedZone(this, 'Zone', {
+      zoneName: `${name}.${rootZoneName}`.toLowerCase(),
     });
-    RemoteZone.export(`${this.Account.Account}${this.AppEnv}`, this.Zone);
-
     new ZoneDelegationRecord(this, 'ZoneDelegation', {
       zone: this.Account.Project.Zone,
       recordName: this.Zone.zoneName,
       nameServers: this.Zone.hostedZoneNameServers as string[],
     });
+
+    RemoteZone.export(`Core${this.Account.Name}${this.Name}`, this.Zone);
   }
 }
 
@@ -115,17 +124,19 @@ export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
   readonly HttpListener: ApplicationListener;
   // readonly HttpsListener: ApplicationListener;
 
-  constructor(account: IAccount, appEnv: string, props?: EcsAppEnvStackProps) {
-    super(account, appEnv, props);
+  constructor(account: IAccount, name: string, props?: EcsAppEnvStackProps) {
+    super(account, name, props);
 
     this.Cluster = new Cluster(this, 'Cluster', {
       vpc: this.Vpc,
-      clusterName: `Core-${account.Account}-${appEnv}-Cluster`,
+      clusterName: `Core-${this.Account.Name}-${this.Name}-Cluster`,
     });
 
     this.Cluster.addCapacity('Capacity', {
       instanceType: new InstanceType('t2.medium'),
       desiredCapacity: 1,
+      minCapacity: 1,
+      maxCapacity: 5,
     });
 
     this.Alb = new ApplicationLoadBalancer(this, 'Alb', {
@@ -149,9 +160,9 @@ export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
     //   open: true
     // });
 
-    RemoteCluster.export(`${this.Account.Account}${this.AppEnv}`, this.Cluster);
-    RemoteAlb.export(`${this.Account.Account}${this.AppEnv}`, this.Alb);
-    RemoteApplicationListener.export(`${this.Account.Account}${this.AppEnv}`, this.HttpListener);
+    RemoteCluster.export(`Core${this.Account.Name}${this.Name}`, this.Cluster);
+    RemoteAlb.export(`Core${this.Account.Name}${this.Name}`, this.Alb);
+    RemoteApplicationListener.export(`Core${this.Account.Name}${this.Name}`, this.HttpListener);
   }
 }
 
@@ -159,17 +170,17 @@ export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
 
 export class ImportedAppEnv extends Construct implements IAppEnv {
   readonly Account: IAccount;
-  readonly AppEnv: string;
+  readonly Name: string;
   readonly Vpc: IVpc;
   readonly Zone: IHostedZone;
 
-  constructor(scope: Construct, account: IAccount, appEnv: string) {
-    super(scope, `Core-${account.Account}-${appEnv}-AppEnv`);
+  constructor(scope: Construct, account: IAccount, name: string) {
+    super(scope, `Core-${account.Name}-${name}-AppEnv`);
 
     this.Account = account;
-    this.AppEnv = appEnv;
-    this.Vpc = RemoteVpc.import(this, this.Account.Account, 'SharedVpc', { hasIsolated: true });
-    this.Zone = RemoteZone.import(this, `${this.Account.Account}${this.AppEnv}`, 'EnvZone');
+    this.Name = name;
+    this.Vpc = RemoteVpc.import(this, `Core${this.Account.Name}`, 'SharedVpc', { hasIsolated: true });
+    this.Zone = RemoteZone.import(this, `Core${this.Account.Name}${this.Name}`, 'Zone');
   }
 }
 
@@ -179,11 +190,11 @@ export class ImportedEcsAppEnv extends ImportedAppEnv implements IEcsAppEnv {
   readonly HttpListener: IApplicationListener;
   // readonly HttpsListener: IApplicationListener;
 
-  constructor(scope: Construct, account: IAccount, appEnv: string) {
-    super(scope, account, appEnv);
+  constructor(scope: Construct, account: IAccount, name: string) {
+    super(scope, account, name);
 
-    this.Cluster = RemoteCluster.import(this, `${this.Account.Account}${this.AppEnv}`, 'Cluster', this.Vpc);
-    this.Alb = RemoteAlb.import(this, `${this.Account.Account}${this.AppEnv}`, 'Alb');
-    this.HttpListener = RemoteApplicationListener.import(this, `${this.Account.Account}${this.AppEnv}`, 'HttpListener');
+    this.Cluster = RemoteCluster.import(this, `Core${this.Account.Name}${this.Name}`, 'Cluster', this.Vpc);
+    this.Alb = RemoteAlb.import(this, `Core${this.Account.Name}${this.Name}`, 'Alb');
+    this.HttpListener = RemoteApplicationListener.import(this, `Core${this.Account.Name}${this.Name}`, 'HttpListener');
   }
 }

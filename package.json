@@ -1,6 +1,13 @@
 {
   "name": "carnivalofthecosmos-cdk",
   "private": true,
+  "scripts": {
+    "link": "lerna link",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
+    "watch": "lerna run watch",
+    "clean": "lerna run clean"
+  },
   "devDependencies": {
     "lerna": "^3.20.2"
   }

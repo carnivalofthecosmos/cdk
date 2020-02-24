@@ -1,6 +1,6 @@
 import { Construct, CfnOutput, Fn } from '@aws-cdk/core';
 import { IHostedZone, HostedZone } from '@aws-cdk/aws-route53';
-import { IVpc, Vpc, SecurityGroup, VpcAttributes } from '@aws-cdk/aws-ec2';
+import { IVpc, Vpc, SecurityGroup } from '@aws-cdk/aws-ec2';
 import { ICluster, Cluster } from '@aws-cdk/aws-ecs';
 import {
   IApplicationLoadBalancer,
@@ -8,6 +8,8 @@ import {
   IApplicationListener,
   ApplicationListener,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
+import { IRepository as ICodeRepository, Repository as CodeRepository } from '@aws-cdk/aws-codecommit';
+import { IProject, Project } from '@aws-cdk/aws-codebuild';
 
 export class RemoteZone {
   static export(namespace: string, zone: IHostedZone & Construct) {
@@ -209,5 +211,43 @@ export class RemoteApplicationListener {
       // securityGroupId,
       securityGroup,
     });
+  }
+}
+
+export class RemoteCodeRepo {
+  static export(namespace: string, repo: ICodeRepository & Construct) {
+    const scope = repo.node.scope as Construct;
+    const exportName = `${namespace}${repo.node.id}`;
+
+    new CfnOutput(scope, 'RepoName', {
+      exportName: `${exportName}Name`,
+      value: repo.repositoryName,
+    });
+  }
+
+  static import(scope: Construct, namespace: string, repo: string) {
+    const exportName = `${namespace}${repo}`;
+    const repoName = Fn.importValue(`${exportName}Name`);
+
+    return CodeRepository.fromRepositoryName(scope, repo, repoName);
+  }
+}
+
+export class RemoteBuildProject {
+  static export(namespace: string, project: IProject & Construct) {
+    const scope = project.node.scope as Construct;
+    const exportName = `${namespace}${project.node.id}`;
+
+    new CfnOutput(scope, 'BuildProjectName', {
+      exportName: `${exportName}Name`,
+      value: project.projectName,
+    });
+  }
+
+  static import(scope: Construct, namespace: string, project: string) {
+    const exportName = `${namespace}${project}`;
+    const repoName = Fn.importValue(`${exportName}Name`);
+
+    return Project.fromProjectName(scope, project, repoName);
   }
 }
