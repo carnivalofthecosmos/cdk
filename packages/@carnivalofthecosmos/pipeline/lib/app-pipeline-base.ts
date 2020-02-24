@@ -10,8 +10,12 @@ export class AppPipelineBase extends Construct {
     super(scope, id);
   }
 
-  addDeployEnvStage(appEnv: IConsumerAppEnv, { isManualApprovalRequired = false }) {
+  addDeployEnvStage(appEnv: IConsumerAppEnv, props?: { isManualApprovalRequired?: boolean }) {
+    const { isManualApprovalRequired } = props || {};
+
     const project = appEnv.Account.Project.Project;
+
+    this.addDeployEnvStage(appEnv);
 
     let cdkSourceRepoAction = this.Pipeline.stages[0].actions.find(
       action => action.actionProperties.actionName == 'CdkCheckout',
