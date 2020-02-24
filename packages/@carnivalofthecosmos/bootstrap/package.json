@@ -1,6 +1,6 @@
 {
   "name": "@carnivalofthecosmos/bootstrap",
-  "version": "0.0.1-alpha.12",
+  "version": "0.0.1-alpha.13",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -29,8 +29,8 @@
     "@aws-cdk/aws-codepipeline": "^1.23.0",
     "@aws-cdk/aws-iam": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
-    "@carnivalofthecosmos/core": "^0.0.1-alpha.12",
-    "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.12"
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.13",
+    "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.13"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.23.0",
