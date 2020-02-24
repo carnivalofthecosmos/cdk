@@ -244,10 +244,10 @@ export class RemoteBuildProject {
     });
   }
 
-  static import(scope: Construct, namespace: string, repo: string) {
-    const exportName = `${namespace}${repo}`;
+  static import(scope: Construct, namespace: string, project: string) {
+    const exportName = `${namespace}${project}`;
     const repoName = Fn.importValue(`${exportName}Name`);
 
-    return Project.fromProjectName(scope, repo, repoName);
+    return Project.fromProjectName(scope, project, repoName);
   }
 }

@@ -1,10 +1,14 @@
 import { Construct } from '@aws-cdk/core';
-import { Pipeline, Artifact, StageOptions } from '@aws-cdk/aws-codepipeline';
+import { Pipeline, Artifact, StageOptions, IAction } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction, CodeBuildAction, ManualApprovalAction } from '@aws-cdk/aws-codepipeline-actions';
 import { RemoteCodeRepo, IConsumerAppEnv, RemoteBuildProject } from '@carnivalofthecosmos/core';
+import { IProject } from '@aws-cdk/aws-codebuild';
 
 export class AppPipelineBase extends Construct {
   readonly Pipeline: Pipeline;
+
+  private cdkSourceRepoAction: IAction;
+  private cdkProject: IProject;
 
   constructor(scope: Construct, id: string) {
     super(scope, id);
@@ -14,31 +18,30 @@ export class AppPipelineBase extends Construct {
     const { isManualApprovalRequired = true } = props || {};
     const project = appEnv.Account.Project.Project;
 
-    let cdkSourceRepoAction = this.Pipeline.stages[0].actions.find(
-      action => action.actionProperties.actionName == 'CdkCheckout',
-    );
-
-    if (!cdkSourceRepoAction) {
+    if (!this.cdkSourceRepoAction) {
       const project = appEnv.Account.Project.Project;
       const cdkRepo = RemoteCodeRepo.import(this, `App-${project}-Bootstrap`, 'AppCdkRepo');
       const sourceOutput = new Artifact('CdkOutput');
-      cdkSourceRepoAction = new CodeCommitSourceAction({
+      this.cdkSourceRepoAction = new CodeCommitSourceAction({
         actionName: 'CdkCheckout',
         repository: cdkRepo,
         output: sourceOutput,
       });
-      this.Pipeline.stages[0].addAction(cdkSourceRepoAction);
+      this.Pipeline.stages[0].addAction(this.cdkSourceRepoAction);
     }
 
-    const cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `Deploy${appEnv.AppEnv}`);
-    const cdkOutputArtifact = (cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
+    if (!this.cdkProject) {
+      this.cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `Deploy`);
+    }
+
+    const cdkOutputArtifact = (this.cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
 
     const deployStage: StageOptions = {
       stageName: `${appEnv.AppEnv}`,
       actions: [
         new CodeBuildAction({
           actionName: 'CdkDeploy',
-          project: cdkProject,
+          project: this.cdkProject,
           input: cdkOutputArtifact,
           runOrder: 2,
         }),
