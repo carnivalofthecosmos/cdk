@@ -24,7 +24,7 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
     });
 
     this.CdkPipeline = new CdkPipeline(this, 'CdkPipeline', {
-      name: 'CoreCdkPipeline',
+      name: 'Core-Cdk-Pipeline',
       cdkRepo: this.CdkRepo,
       deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
@@ -65,7 +65,7 @@ export class ConsumerBootstrapStack extends Stack implements IBootstrap {
     });
 
     this.CdkPipeline = new CdkPipeline(this, 'CdkPipeline', {
-      name: `App-${project}-CdkPipeline`,
+      name: `App-${project}-Cdk-Pipeline`,
       cdkRepo: this.CdkRepo,
       deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
