@@ -18,7 +18,7 @@ export interface AppNodePipelineProps {
   codeBranch?: string;
   buildRole?: IRole;
   buildEnvs?: BuildEnvironmentVariables;
-  buildCommands: string[];
+  buildCommands?: string[];
 }
 
 export class AppNodePipeline extends AppPipelineBase {
