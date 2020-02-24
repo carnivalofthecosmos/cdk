@@ -20,7 +20,7 @@ export class AppPipelineBase extends Construct {
 
     if (!this.cdkSourceRepoAction) {
       const project = appEnv.Account.Project.Project;
-      const cdkRepo = RemoteCodeRepo.import(this, `App-${project}-Bootstrap`, 'AppCdkRepo');
+      const cdkRepo = RemoteCodeRepo.import(this, `App-${project}-Bootstrap`, 'CdkRepo');
       const sourceOutput = new Artifact('CdkOutput');
       this.cdkSourceRepoAction = new CodeCommitSourceAction({
         actionName: 'CdkCheckout',
@@ -31,7 +31,7 @@ export class AppPipelineBase extends Construct {
     }
 
     if (!this.cdkProject) {
-      this.cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `Deploy`);
+      this.cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `CdkDeploy`);
     }
 
     const cdkOutputArtifact = (this.cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];

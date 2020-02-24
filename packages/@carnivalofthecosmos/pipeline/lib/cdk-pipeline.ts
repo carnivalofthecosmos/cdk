@@ -48,7 +48,7 @@ export class CdkPipeline extends Construct {
       removalPolicy: RemovalPolicy.RETAIN,
     });
 
-    this.Deploy = new Project(this, 'Deploy', {
+    this.Deploy = new Project(this, 'CdkDeploy', {
       projectName: `${name}Deploy`,
       role: deployRole,
       source: Source.codeCommit({
@@ -101,7 +101,7 @@ export class CdkPipeline extends Construct {
     const sourceOutput = new Artifact('CdkCodeOutput');
     const cdkDeployOutput = new Artifact('CdkDeployOutput');
 
-    this.Pipeline = new Pipeline(this, 'Pipeline', {
+    this.Pipeline = new Pipeline(this, 'CdkPipeline', {
       pipelineName: name,
       artifactBucket: artifactBucket,
       stages: [
