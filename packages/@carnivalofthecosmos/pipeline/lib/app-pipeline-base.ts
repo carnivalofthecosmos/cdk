@@ -2,7 +2,7 @@ import { Construct } from '@aws-cdk/core';
 import { Pipeline, Artifact, StageOptions, IAction } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction, CodeBuildAction, ManualApprovalAction } from '@aws-cdk/aws-codepipeline-actions';
 import { RemoteCodeRepo, IConsumerAppEnv, RemoteBuildProject } from '@carnivalofthecosmos/core';
-import { IProject } from '@aws-cdk/aws-codebuild';
+import { IProject, BuildEnvironmentVariableType } from '@aws-cdk/aws-codebuild';
 
 export class AppPipelineBase extends Construct {
   readonly Pipeline: Pipeline;
@@ -44,6 +44,12 @@ export class AppPipelineBase extends Construct {
           project: this.cdkProject,
           input: cdkOutputArtifact,
           runOrder: 2,
+          environmentVariables: {
+            STACKS: {
+              type: BuildEnvironmentVariableType.PLAINTEXT,
+              value: `App-${project}-${appEnv.Account.Account}-${appEnv.AppEnv}-*`,
+            },
+          },
         }),
       ],
     };
