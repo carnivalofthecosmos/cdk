@@ -1,6 +1,6 @@
 {
   "name": "@carnivalofthecosmos/pipeline",
-  "version": "0.0.1-alpha.15",
+  "version": "0.0.1-alpha.16",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -31,7 +31,7 @@
     "@aws-cdk/aws-codepipeline-actions": "^1.23.0",
     "@aws-cdk/aws-iam": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
-    "@carnivalofthecosmos/core": "^0.0.1-alpha.13"
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.16"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.23.0",
