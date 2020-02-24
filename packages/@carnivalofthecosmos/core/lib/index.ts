@@ -11,7 +11,15 @@ export {
   ImportedEcsAppEnv,
 } from './app-env';
 export { CiEnvStack, CiEnvStackProps, ImportedCiEnv } from './ci-env';
-export { RemoteZone, RemoteVpc, RemoteCluster, RemoteAlb, RemoteApplicationListener } from './remote';
+export {
+  RemoteZone,
+  RemoteVpc,
+  RemoteCluster,
+  RemoteAlb,
+  RemoteApplicationListener,
+  RemoteCodeRepo,
+  RemoteBuildProject,
+} from './remote';
 export {
   IConsumerProject,
   IConsumerAccount,

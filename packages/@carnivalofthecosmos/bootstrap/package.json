@@ -29,7 +29,8 @@
     "@aws-cdk/aws-codepipeline": "^1.23.0",
     "@aws-cdk/aws-iam": "^1.23.0",
     "@aws-cdk/core": "^1.23.0",
-    "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.11"
+    "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.11",
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.10"
   },
   "devDependencies": {
     "@aws-cdk/assert": "^1.23.0",

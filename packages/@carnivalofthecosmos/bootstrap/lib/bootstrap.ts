@@ -1,29 +1,31 @@
 import { Construct, Stack, StackProps } from '@aws-cdk/core';
 import { Repository, IRepository } from '@aws-cdk/aws-codecommit';
 import { CdkPipeline } from '@carnivalofthecosmos/pipeline';
-import { ManagedPolicy } from '@aws-cdk/aws-iam';
+import { RemoteCodeRepo } from '@carnivalofthecosmos/core';
+import { RemoteBuildProject } from '@carnivalofthecosmos/core/lib/remote';
 
 export interface IBootstrap extends Construct {
-  CodeRepo: IRepository;
+  CdkRepo: IRepository;
   CdkPipeline: CdkPipeline;
 }
 
 export interface CoreBootstrapStackProps extends StackProps {}
 
 export class CoreBootstrapStack extends Stack implements IBootstrap {
-  readonly CodeRepo: IRepository;
+  readonly CdkRepo: Repository;
   readonly CdkPipeline: CdkPipeline;
 
   constructor(scope: Construct, props?: CoreBootstrapStackProps) {
     super(scope, `Core-Bootstrap`, props);
 
     // TODO: Deletion policy ?
-    this.CodeRepo = new Repository(this, 'CoreCdkRepo', {
+    this.CdkRepo = new Repository(this, 'CdkRepo', {
       repositoryName: `core-cdk-repo`,
     });
 
-    this.CdkPipeline = new CdkPipeline(this, 'CoreCdkPipeline', {
-      codeRepo: this.CodeRepo,
+    this.CdkPipeline = new CdkPipeline(this, 'CdkPipeline', {
+      name: 'CoreCdkPipeline',
+      cdkRepo: this.CdkRepo,
       deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
       },
@@ -42,26 +44,29 @@ export class CoreBootstrapStack extends Stack implements IBootstrap {
     // addBuildManagedPolicy('AmazonEC2FullAccess');
 
     addBuildManagedPolicy('AdministratorAccess'); // FIXME:
+
+    RemoteCodeRepo.export('CoreBootstrap', this.CdkRepo);
+    RemoteBuildProject.export(`CoreBootstrap`, this.CdkPipeline.Deploy);
   }
 }
 
 export interface ConsumerBootstrapStackProps extends StackProps {}
 
 export class ConsumerBootstrapStack extends Stack implements IBootstrap {
-  readonly CodeRepo: IRepository;
+  readonly CdkRepo: Repository;
   readonly CdkPipeline: CdkPipeline;
 
   constructor(scope: Construct, project: string, props?: CoreBootstrapStackProps) {
     super(scope, `App-${project}-Bootstrap`, props);
 
     // TODO: Deletion policy ?
-    this.CodeRepo = new Repository(this, 'AppCdkRepo', {
+    this.CdkRepo = new Repository(this, 'CdkRepo', {
       repositoryName: `app-${project}-cdk-repo`.toLocaleLowerCase(),
     });
 
-    this.CdkPipeline = new CdkPipeline(this, 'AppCdkPipeline', {
-      name: `${project}CdkPipeline`,
-      codeRepo: this.CodeRepo,
+    this.CdkPipeline = new CdkPipeline(this, 'CdkPipeline', {
+      name: `App-${project}-CdkPipeline`,
+      cdkRepo: this.CdkRepo,
       deployEnvs: {
         NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
       },
@@ -80,5 +85,8 @@ export class ConsumerBootstrapStack extends Stack implements IBootstrap {
     // addBuildManagedPolicy('AmazonEC2FullAccess');
 
     addBuildManagedPolicy('AdministratorAccess'); // FIXME:
+
+    RemoteCodeRepo.export(`App-${project}-Bootstrap`, this.CdkRepo);
+    RemoteBuildProject.export(`App-${project}-Bootstrap`, this.CdkPipeline.Deploy);
   }
 }

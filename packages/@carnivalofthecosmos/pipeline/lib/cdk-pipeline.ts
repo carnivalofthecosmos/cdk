@@ -1,9 +1,8 @@
 import { Construct, RemovalPolicy, PhysicalName } from '@aws-cdk/core';
 import { Bucket, BucketEncryption } from '@aws-cdk/aws-s3';
-import { Key } from '@aws-cdk/aws-kms';
 import { IRepository } from '@aws-cdk/aws-codecommit';
 import { Pipeline, Artifact } from '@aws-cdk/aws-codepipeline';
-import { CodeCommitSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
+import { CodeCommitSourceAction, CodeBuildAction, CodeCommitTrigger } from '@aws-cdk/aws-codepipeline-actions';
 import {
   Project,
   BuildSpec,
@@ -21,8 +20,8 @@ export interface BuildEnvironmentVariables {
 
 export interface CdkPipelineProps {
   name?: string;
-  codeRepo: IRepository;
-  codeBranch?: string;
+  cdkRepo: IRepository;
+  cdkBranch?: string;
   deployRole?: IRole;
   deployEnvs?: BuildEnvironmentVariables;
   deployStacks?: string[];
@@ -37,15 +36,14 @@ export class CdkPipeline extends Construct {
 
     const {
       name = id,
-      codeRepo,
-      codeBranch = 'master',
+      cdkRepo,
+      cdkBranch = 'master',
       deployRole = undefined,
       deployEnvs = undefined,
       deployStacks = [],
     } = props;
 
     const artifactBucket = new Bucket(this, 'CdkArtifactBucket', {
-      bucketName: PhysicalName.GENERATE_IF_NEEDED,
       encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.RETAIN,
     });
@@ -54,8 +52,8 @@ export class CdkPipeline extends Construct {
       projectName: `${name}Deploy`,
       role: deployRole,
       source: Source.codeCommit({
-        repository: codeRepo,
-        branchOrRef: codeBranch,
+        repository: cdkRepo,
+        branchOrRef: cdkBranch,
       }),
       buildSpec: BuildSpec.fromObject({
         version: '0.2',
@@ -97,7 +95,7 @@ export class CdkPipeline extends Construct {
     });
 
     const sourceOutput = new Artifact('CdkCodeOutput');
-    const cdkBuildOutput = new Artifact('CdkBuildOutput');
+    const cdkDeployOutput = new Artifact('CdkDeployOutput');
 
     this.Pipeline = new Pipeline(this, 'Pipeline', {
       pipelineName: name,
@@ -107,10 +105,11 @@ export class CdkPipeline extends Construct {
           stageName: 'Source',
           actions: [
             new CodeCommitSourceAction({
-              actionName: 'Code_Checkout',
-              repository: codeRepo,
-              branch: codeBranch,
+              actionName: 'CdkCheckout',
+              repository: cdkRepo,
+              branch: cdkBranch,
               output: sourceOutput,
+              trigger: CodeCommitTrigger.NONE,
             }),
           ],
         },
@@ -118,10 +117,10 @@ export class CdkPipeline extends Construct {
           stageName: 'Deploy',
           actions: [
             new CodeBuildAction({
-              actionName: 'CDK_Deploy',
+              actionName: 'CdkDeploy',
               project: this.Deploy,
               input: sourceOutput,
-              outputs: [cdkBuildOutput],
+              outputs: [cdkDeployOutput],
               environmentVariables: {
                 STACKS: {
                   type: BuildEnvironmentVariableType.PLAINTEXT,

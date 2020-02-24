@@ -2,6 +2,7 @@ import { Construct, Stack, StackProps } from '@aws-cdk/core';
 import {
   IProject,
   IAccount,
+  IAppEnv,
   IEcsAppEnv,
   ImportedProject,
   ImportedAccount,
@@ -9,8 +10,6 @@ import {
   ImportedEcsAppEnv,
   ImportedCiEnv,
 } from '.';
-import {} from './project';
-import { IAppEnv } from './appEnv';
 
 export interface IConsumerProject extends Construct {
   Scope: Construct;
