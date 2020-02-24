@@ -33,7 +33,7 @@ export class EcsService extends Construct {
   constructor(appEnv: IConsumerEcsAppEnv, id: string, props: EcsServiceProps) {
     super(appEnv, id);
 
-    const projectName = appEnv.Account.Project.Project;
+    const projectName = appEnv.Account.Project.Name;
     const { container, service, routing } = props;
 
     this.TaskDefinition = new Ec2TaskDefinition(this, 'Task', {

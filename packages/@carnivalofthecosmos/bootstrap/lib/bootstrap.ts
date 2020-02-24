@@ -86,7 +86,7 @@ export class ConsumerBootstrapStack extends Stack implements IBootstrap {
 
     addBuildManagedPolicy('AdministratorAccess'); // FIXME:
 
-    RemoteCodeRepo.export(`App-${project}-Bootstrap`, this.CdkRepo);
-    RemoteBuildProject.export(`App-${project}-Bootstrap`, this.CdkPipeline.Deploy);
+    RemoteCodeRepo.export(`App${project}Bootstrap`, this.CdkRepo);
+    RemoteBuildProject.export(`App${project}Bootstrap`, this.CdkPipeline.Deploy);
   }
 }

@@ -4,7 +4,7 @@ import { IProject } from '.';
 
 export interface IAccount extends Construct {
   Project: IProject;
-  Account: string;
+  Name: string;
 }
 
 export interface AccountStackProps extends StackProps {
@@ -13,27 +13,27 @@ export interface AccountStackProps extends StackProps {
 
 export class AccountStack extends Stack implements IAccount {
   readonly Project: IProject;
-  readonly Account: string;
+  readonly Name: string;
   readonly NetworkBuilder: NetworkBuilder;
 
-  constructor(project: IProject, account: string, props: AccountStackProps) {
-    super(project.Scope, `Core-${account}-Account`, props);
+  constructor(project: IProject, name: string, props: AccountStackProps) {
+    super(project.Scope, `Core-${name}-Account`, props);
 
     const { cidr } = props;
 
     this.Project = project;
-    this.Account = account;
+    this.Name = name;
     this.NetworkBuilder = new NetworkBuilder(cidr);
   }
 }
 
 export class ImportedAccount extends Construct implements IAccount {
   readonly Project: IProject;
-  readonly Account: string;
-  constructor(scope: Construct, project: IProject, account: string) {
-    super(scope, `Core-${account}-Account`);
+  readonly Name: string;
+  constructor(scope: Construct, project: IProject, name: string) {
+    super(scope, `Core-${name}-Account`);
 
     this.Project = project;
-    this.Account = account;
+    this.Name = name;
   }
 }

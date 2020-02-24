@@ -16,11 +16,12 @@ export class AppPipelineBase extends Construct {
 
   addDeployEnvStage(appEnv: IConsumerAppEnv, props?: { isManualApprovalRequired?: boolean }) {
     const { isManualApprovalRequired = true } = props || {};
-    const project = appEnv.Account.Project.Project;
+    const projectName = appEnv.Account.Project.Name;
+    const accountName = appEnv.Account.Name;
+    const appEnvName = appEnv.Name;
 
     if (!this.cdkSourceRepoAction) {
-      const project = appEnv.Account.Project.Project;
-      const cdkRepo = RemoteCodeRepo.import(this, `App-${project}-Bootstrap`, 'CdkRepo');
+      const cdkRepo = RemoteCodeRepo.import(this, `App${projectName}Bootstrap`, 'CdkRepo');
       const sourceOutput = new Artifact('CdkOutput');
       this.cdkSourceRepoAction = new CodeCommitSourceAction({
         actionName: 'CdkCheckout',
@@ -31,13 +32,13 @@ export class AppPipelineBase extends Construct {
     }
 
     if (!this.cdkProject) {
-      this.cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `CdkDeploy`);
+      this.cdkProject = RemoteBuildProject.import(this, `App${projectName}Bootstrap`, `CdkDeploy`);
     }
 
     const cdkOutputArtifact = (this.cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
 
     const deployStage: StageOptions = {
-      stageName: `${appEnv.AppEnv}`,
+      stageName: `${appEnvName}`,
       actions: [
         new CodeBuildAction({
           actionName: 'CdkDeploy',
@@ -47,7 +48,7 @@ export class AppPipelineBase extends Construct {
           environmentVariables: {
             STACKS: {
               type: BuildEnvironmentVariableType.PLAINTEXT,
-              value: `App-${project}-${appEnv.Account.Account}-${appEnv.AppEnv}-*`,
+              value: `App-${projectName}-${accountName}-${appEnvName}-*`,
             },
           },
         }),

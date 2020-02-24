@@ -1,6 +1,5 @@
 import { Construct, RemovalPolicy, PhysicalName } from '@aws-cdk/core';
 import { Bucket, BucketEncryption } from '@aws-cdk/aws-s3';
-import { Key } from '@aws-cdk/aws-kms';
 import { IRepository } from '@aws-cdk/aws-codecommit';
 import { Pipeline, Artifact } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';

@@ -20,7 +20,7 @@ export interface CiEnvStackProps extends StackProps {
 
 export class CiEnvStack extends Stack implements IEcsAppEnv {
   readonly Account: IAccount;
-  readonly AppEnv: string;
+  readonly Name: string;
   readonly Vpc: Vpc;
   readonly Zone: HostedZone;
   readonly Cluster: Cluster;
@@ -28,19 +28,19 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
   readonly HttpListener: ApplicationListener;
 
   constructor(account: IAccount, props: CiEnvStackProps) {
-    super(account.Project.Scope, `Core-${account.Account}-Ci-Env`);
+    super(account.Project.Scope, `Core-${account.Name}-Ci-Env`);
 
     const { networkBuilder } = props;
 
     this.Account = account;
-    this.AppEnv = 'Ci';
+    this.Name = 'Ci';
 
     this.Vpc = new Vpc(this, 'Vpc', {
       cidr: networkBuilder.addSubnet(24),
       maxAzs: 3,
       subnetConfiguration: [
         {
-          name: 'Ci',
+          name: 'Main',
           subnetType: SubnetType.ISOLATED,
           cidrMask: 26,
         },
@@ -59,7 +59,7 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
 
     this.Cluster = new Cluster(this, 'Cluster', {
       vpc: this.Vpc,
-      clusterName: `Core-${this.Account.Account}-${this.AppEnv}-Cluster`,
+      clusterName: `Core-${this.Account.Name}-${this.Name}-Cluster`,
     });
 
     this.Cluster.addCapacity('Capacity', {
@@ -83,17 +83,17 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
       ],
     });
 
-    RemoteVpc.export(`${this.Account.Account}${this.AppEnv}`, this.Vpc);
-    RemoteZone.export(`${this.Account.Account}${this.AppEnv}`, this.Zone);
-    RemoteCluster.export(`${this.Account.Account}${this.AppEnv}`, this.Cluster);
-    RemoteAlb.export(`${this.Account.Account}${this.AppEnv}`, this.Alb);
-    RemoteApplicationListener.export(`${this.Account.Account}${this.AppEnv}`, this.HttpListener);
+    RemoteVpc.export(`Core${this.Account.Name}${this.Name}`, this.Vpc);
+    RemoteZone.export(`Core${this.Account.Name}${this.Name}`, this.Zone);
+    RemoteCluster.export(`Core${this.Account.Name}${this.Name}`, this.Cluster);
+    RemoteAlb.export(`Core${this.Account.Name}${this.Name}`, this.Alb);
+    RemoteApplicationListener.export(`Core${this.Account.Name}${this.Name}`, this.HttpListener);
   }
 }
 
 export class ImportedCiEnv extends Construct implements IEcsAppEnv {
   readonly Account: IAccount;
-  readonly AppEnv: string;
+  readonly Name: string;
   readonly Vpc: IVpc;
   readonly Zone: IHostedZone;
   readonly Cluster: ICluster;
@@ -101,15 +101,15 @@ export class ImportedCiEnv extends Construct implements IEcsAppEnv {
   readonly HttpListener: IApplicationListener;
 
   constructor(scope: Construct, account: IAccount) {
-    super(scope, `Core-${account.Account}-Ci-Env`);
+    super(scope, `Core-${account.Name}-Ci-Env`);
 
     this.Account = account;
-    this.AppEnv = 'Ci';
+    this.Name = 'Ci';
 
-    this.Vpc = RemoteVpc.import(this, this.Account.Account, 'Vpc', { hasIsolated: true });
-    this.Zone = RemoteZone.import(this, `${this.Account.Account}${this.AppEnv}`, 'Zone');
-    this.Cluster = RemoteCluster.import(this, `${this.Account.Account}${this.AppEnv}`, 'Cluster', this.Vpc);
-    this.Alb = RemoteAlb.import(this, `${this.Account.Account}${this.AppEnv}`, 'Alb');
-    this.HttpListener = RemoteApplicationListener.import(this, `${this.Account.Account}${this.AppEnv}`, 'HttpListener');
+    this.Vpc = RemoteVpc.import(this, `Core${this.Account.Name}${this.Name}`, 'Vpc', { hasIsolated: true });
+    this.Zone = RemoteZone.import(this, `Core${this.Account.Name}${this.Name}`, 'Zone');
+    this.Cluster = RemoteCluster.import(this, `Core${this.Account.Name}${this.Name}`, 'Cluster', this.Vpc);
+    this.Alb = RemoteAlb.import(this, `Core${this.Account.Name}${this.Name}`, 'Alb');
+    this.HttpListener = RemoteApplicationListener.import(this, `Core${this.Account.Name}${this.Name}`, 'HttpListener');
   }
 }

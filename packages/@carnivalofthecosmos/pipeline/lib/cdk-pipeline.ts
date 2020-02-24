@@ -67,11 +67,7 @@ export class CdkPipeline extends Construct {
             commands: ['npm install'],
           },
           build: {
-            commands: [
-              'npx cdk synth ${STACKS}',
-              'npx cdk diff ${STACKS}',
-              'npx cdk deploy --require-approval=never ${STACKS}',
-            ],
+            commands: ['npx cdk synth ${STACKS}', 'npx cdk deploy --require-approval=never ${STACKS}'],
           },
         },
         artifacts: {
