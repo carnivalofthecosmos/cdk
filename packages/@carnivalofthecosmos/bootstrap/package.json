@@ -1,6 +1,6 @@
 {
   "name": "@carnivalofthecosmos/bootstrap",
-  "version": "0.0.1-alpha.18",
+  "version": "0.0.1-alpha.19",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -34,6 +34,12 @@
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.23.0",
+    "@aws-cdk/aws-codecommit": "1.23.0",
+    "@aws-cdk/aws-codepipeline": "1.23.0",
+    "@aws-cdk/aws-iam": "1.23.0",
+    "@aws-cdk/core": "1.23.0",
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.19",
+    "@carnivalofthecosmos/pipeline": "^0.0.1-alpha.19",
     "@types/jest": "^24.0.22",
     "@types/node": "^10.17.5",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
@@ -47,12 +53,6 @@
     "source-map-support": "^0.5.16",
     "ts-jest": "^24.1.0",
     "tslint": "^6.0.0",
-    "typescript": "^3.7.2",
-    "@aws-cdk/aws-codecommit": "1.23.0",
-    "@aws-cdk/aws-codepipeline": "1.23.0",
-    "@aws-cdk/aws-iam": "1.23.0",
-    "@aws-cdk/core": "1.23.0",
-    "@carnivalofthecosmos/core": "0.0.1-alpha.17",
-    "@carnivalofthecosmos/pipeline": "0.0.1-alpha.18"
+    "typescript": "^3.7.2"
   }
 }
