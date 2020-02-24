@@ -10,7 +10,7 @@ export class AppPipelineBase extends Construct {
     super(scope, id);
   }
 
-  addDeployEnvStage(appEnv: IConsumerAppEnv, isManualApprovalRequired: boolean = true) {
+  addDeployEnvStage(appEnv: IConsumerAppEnv, { isManualApprovalRequired = false }) {
     const project = appEnv.Account.Project.Project;
 
     let cdkSourceRepoAction = this.Pipeline.stages[0].actions.find(
@@ -29,7 +29,7 @@ export class AppPipelineBase extends Construct {
       this.Pipeline.stages[0].addAction(cdkSourceRepoAction);
     }
 
-    const cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, 'Deploy');
+    const cdkProject = RemoteBuildProject.import(this, `App-${project}-Bootstrap`, `Deploy${appEnv.AppEnv}`);
     const cdkOutputArtifact = (cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
 
     const deployStage: StageOptions = {
