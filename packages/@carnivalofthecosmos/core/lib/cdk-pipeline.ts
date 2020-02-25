@@ -19,7 +19,7 @@ import {
   IProject,
 } from '@aws-cdk/aws-codebuild';
 import { IRole } from '@aws-cdk/aws-iam';
-import { IConsumerCiCd, IConsumerAppEnv } from './interfaces';
+import { IConsumerAppEnv } from './interfaces';
 
 export interface BuildEnvironmentVariables {
   [key: string]: BuildEnvironmentVariable;
@@ -161,6 +161,7 @@ export const addCdkDeployEnvStageToPipeline = (props: {
       actionName: 'CdkCheckout',
       repository: cdkRepo,
       output: sourceOutput,
+      trigger: CodeCommitTrigger.NONE,
     });
     pipeline.stages[0].addAction(cdkSourceRepoAction);
   }
