@@ -1,6 +1,6 @@
 {
   "name": "@carnivalofthecosmos/pipeline",
-  "version": "0.0.1-alpha.22",
+  "version": "0.0.1-alpha.23",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -41,7 +41,7 @@
     "@aws-cdk/aws-codepipeline-actions": "1.23.0",
     "@aws-cdk/aws-iam": "1.23.0",
     "@aws-cdk/core": "1.23.0",
-    "@carnivalofthecosmos/core": "^0.0.1-alpha.22",
+    "@carnivalofthecosmos/core": "^0.0.1-alpha.23",
     "@types/jest": "^24.0.22",
     "@types/node": "^10.17.5",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
