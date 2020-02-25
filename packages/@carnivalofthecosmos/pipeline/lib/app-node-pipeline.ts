@@ -56,7 +56,7 @@ export class AppNodePipeline extends Construct {
             },
           },
           pre_build: {
-            commands: ['npm install'],
+            commands: ['npm ci'],
           },
           build: {
             commands: buildCommands,

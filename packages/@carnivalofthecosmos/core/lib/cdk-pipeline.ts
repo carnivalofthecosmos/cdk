@@ -71,7 +71,7 @@ export class CdkPipeline extends Construct {
             },
           },
           pre_build: {
-            commands: ['npm install'],
+            commands: ['npm ci'],
           },
           build: {
             commands: ['npx cdk synth ${STACKS}', 'npx cdk deploy --require-approval=never ${STACKS}'],
@@ -169,7 +169,7 @@ export const addCdkDeployEnvStageToPipeline = (props: {
   const cdkOutputArtifact = (cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
 
   const deployStage: StageOptions = {
-    stageName: `${appEnvName} (Acc: ${accountName})`,
+    stageName: `${accountName}-${appEnvName}`, // TODO: is this confusing ?
     actions: [
       new CodeBuildAction({
         actionName: 'CdkDeploy',

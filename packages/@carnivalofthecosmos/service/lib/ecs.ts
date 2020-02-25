@@ -58,9 +58,10 @@ export class EcsService extends Construct {
       cluster: appEnv.Core.Cluster,
     });
 
+    const targetGroupName = `${projectName}-${envName}-${id}-TG`;
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
       vpc: appEnv.Core.Vpc,
-      targetGroupName: `App-${projectName}-${envName}-${id}-TargetGroup`,
+      targetGroupName: targetGroupName.length <= 32 ? targetGroupName : undefined, // TODO: Add warning for this case
       protocol: ApplicationProtocol.HTTP,
       targets: [
         this.Service.loadBalancerTarget({
