@@ -1,8 +1,20 @@
-export { IProject, ProjectStack, ProjectStackProps, ImportedProject } from './project';
-export { IAccount, AccountStack, AccountStackProps, ImportedAccount } from './account';
 export {
-  IAppEnv,
-  IEcsAppEnv,
+  INamespace,
+  ICoreProject,
+  ICoreAccount,
+  ICoreAppEnv,
+  ICoreEcsAppEnv,
+  ICoreCiCd,
+  ICoreConsumer,
+  IConsumerProject,
+  IConsumerAccount,
+  IConsumerAppEnv,
+  IConsumerEcsAppEnv,
+  IConsumerCiCd,
+} from './interfaces';
+export { ProjectStack, ProjectStackProps, ImportedProject } from './project';
+export { AccountStack, AccountStackProps, ImportedAccount } from './account';
+export {
   AppEnvStack,
   AppEnvStackProps,
   EcsAppEnvStack,
@@ -10,7 +22,8 @@ export {
   ImportedAppEnv,
   ImportedEcsAppEnv,
 } from './app-env';
-export { CiEnvStack, CiEnvStackProps, ImportedCiEnv } from './ci-env';
+export { CiCdStack, CiCdStackProps, ImportedCiCd } from './ci-cd';
+export { CdkPipeline, CdkPipelineProps, addCdkDeployEnvStageToPipeline } from './cdk-pipeline';
 export {
   RemoteZone,
   RemoteVpc,
@@ -21,13 +34,9 @@ export {
   RemoteBuildProject,
 } from './remote';
 export {
-  IConsumerProject,
-  IConsumerAccount,
-  IConsumerAppEnv,
-  IConsumerEcsAppEnv,
   ConsumerProjectStack,
   ConsumerAccountStack,
   ConsumerAppEnvStack,
   ConsumerEcsAppEnvStack,
-  ConsumerCiEnvStack,
+  ConsumerCiCdStack,
 } from './consumer';

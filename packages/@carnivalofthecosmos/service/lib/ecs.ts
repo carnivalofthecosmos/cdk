@@ -13,7 +13,7 @@ import {
   ApplicationListenerRule,
   ApplicationListenerRuleProps,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IEcsAppEnv, IConsumerEcsAppEnv } from '@carnivalofthecosmos/core';
+import { IConsumerEcsAppEnv } from '@carnivalofthecosmos/core';
 
 export interface EcsServiceProps {
   container: ContainerDefinitionOptions & { port?: PortMapping };
@@ -53,12 +53,12 @@ export class EcsService extends Construct {
       desiredCount: 1,
       ...service,
       taskDefinition: this.TaskDefinition,
-      cluster: appEnv.CoreAppEnv.Cluster,
+      cluster: appEnv.Core.Cluster,
       serviceName: `${projectName}-${id}-Service`,
     });
 
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
-      vpc: appEnv.CoreAppEnv.Vpc,
+      vpc: appEnv.Core.Vpc,
       targetGroupName: `${projectName}-${id}-TargetGroup`,
       protocol: ApplicationProtocol.HTTP,
       targets: [
@@ -70,7 +70,7 @@ export class EcsService extends Construct {
 
     new ApplicationListenerRule(this, 'ServiceRule', {
       ...routing,
-      listener: appEnv.CoreAppEnv.HttpListener,
+      listener: appEnv.Core.HttpListener,
       targetGroups: [targetGroup],
     });
   }

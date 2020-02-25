@@ -19,26 +19,28 @@ import {
   IApplicationListener,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { NetworkBuilder } from '@aws-cdk/aws-ec2/lib/network-util';
-import { IAccount, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
-
-export interface IAppEnv extends Construct {
-  Account: IAccount;
-  Name: string;
-  Vpc: IVpc;
-  Zone: IHostedZone;
-}
+import {
+  ICoreAccount,
+  ICoreAppEnv,
+  ICoreEcsAppEnv,
+  RemoteVpc,
+  RemoteZone,
+  RemoteCluster,
+  RemoteAlb,
+  RemoteApplicationListener,
+} from '.';
 
 export interface AppEnvStackProps extends StackProps {
   networkBuilder?: NetworkBuilder;
 }
 
-export class AppEnvStack extends Stack implements IAppEnv {
-  readonly Account: IAccount;
+export class AppEnvStack extends Stack implements ICoreAppEnv {
+  readonly Account: ICoreAccount;
   readonly Name: string;
   readonly Vpc: Vpc;
   readonly Zone: HostedZone;
 
-  constructor(account: IAccount, name: string, props?: AppEnvStackProps) {
+  constructor(account: ICoreAccount, name: string, props?: AppEnvStackProps) {
     super(account.Project.Scope, `Core-${account.Name}-${name}-AppEnv`, {
       ...props,
       //   env: {  TODO:
@@ -109,22 +111,15 @@ export class AppEnvStack extends Stack implements IAppEnv {
 }
 
 // ECS Target AppEnv
-export interface IEcsAppEnv extends IAppEnv {
-  Cluster: ICluster;
-  Alb: IApplicationLoadBalancer;
-  HttpListener: IApplicationListener;
-  // HttpsListener: IApplicationListener;
-}
-
 export interface EcsAppEnvStackProps extends AppEnvStackProps {}
 
-export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
+export class EcsAppEnvStack extends AppEnvStack implements ICoreEcsAppEnv {
   readonly Cluster: Cluster;
   readonly Alb: ApplicationLoadBalancer;
   readonly HttpListener: ApplicationListener;
   // readonly HttpsListener: ApplicationListener;
 
-  constructor(account: IAccount, name: string, props?: EcsAppEnvStackProps) {
+  constructor(account: ICoreAccount, name: string, props?: EcsAppEnvStackProps) {
     super(account, name, props);
 
     this.Cluster = new Cluster(this, 'Cluster', {
@@ -168,13 +163,13 @@ export class EcsAppEnvStack extends AppEnvStack implements IEcsAppEnv {
 
 // Import
 
-export class ImportedAppEnv extends Construct implements IAppEnv {
-  readonly Account: IAccount;
+export class ImportedAppEnv extends Construct implements ICoreAppEnv {
+  readonly Account: ICoreAccount;
   readonly Name: string;
   readonly Vpc: IVpc;
   readonly Zone: IHostedZone;
 
-  constructor(scope: Construct, account: IAccount, name: string) {
+  constructor(scope: Construct, account: ICoreAccount, name: string) {
     super(scope, `Core-${account.Name}-${name}-AppEnv`);
 
     this.Account = account;
@@ -184,13 +179,13 @@ export class ImportedAppEnv extends Construct implements IAppEnv {
   }
 }
 
-export class ImportedEcsAppEnv extends ImportedAppEnv implements IEcsAppEnv {
+export class ImportedEcsAppEnv extends ImportedAppEnv implements ICoreEcsAppEnv {
   readonly Cluster: ICluster;
   readonly Alb: IApplicationLoadBalancer;
   readonly HttpListener: IApplicationListener;
   // readonly HttpsListener: IApplicationListener;
 
-  constructor(scope: Construct, account: IAccount, name: string) {
+  constructor(scope: Construct, account: ICoreAccount, name: string) {
     super(scope, account, name);
 
     this.Cluster = RemoteCluster.import(this, `Core${this.Account.Name}${this.Name}`, 'Cluster', this.Vpc);
