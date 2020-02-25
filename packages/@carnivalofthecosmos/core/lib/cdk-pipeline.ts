@@ -169,7 +169,7 @@ export const addCdkDeployEnvStageToPipeline = (props: {
   const cdkOutputArtifact = (cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
 
   const deployStage: StageOptions = {
-    stageName: `${appEnvName}`,
+    stageName: `${appEnvName} (Acc: ${accountName})`,
     actions: [
       new CodeBuildAction({
         actionName: 'CdkDeploy',

@@ -33,11 +33,12 @@ export class EcsService extends Construct {
   constructor(appEnv: IConsumerEcsAppEnv, id: string, props: EcsServiceProps) {
     super(appEnv, id);
 
-    const projectName = appEnv.Account.Project.Name;
     const { container, service, routing } = props;
+    const projectName = appEnv.Account.Project.Name;
+    const envName = appEnv.Name;
 
     this.TaskDefinition = new Ec2TaskDefinition(this, 'Task', {
-      family: `${projectName}-${id}-Task`,
+      family: `App-${projectName}-${envName}-${id}-Task`,
     });
 
     this.TaskDefinition.addContainer('AppContainer', {
@@ -52,14 +53,14 @@ export class EcsService extends Construct {
     this.Service = new Ec2Service(this, 'Service', {
       desiredCount: 1,
       ...service,
+      serviceName: `App-${projectName}-${envName}-${id}-Service`,
       taskDefinition: this.TaskDefinition,
       cluster: appEnv.Core.Cluster,
-      serviceName: `${projectName}-${id}-Service`,
     });
 
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
       vpc: appEnv.Core.Vpc,
-      targetGroupName: `${projectName}-${id}-TargetGroup`,
+      targetGroupName: `App-${projectName}-${envName}-${id}-TargetGroup`,
       protocol: ApplicationProtocol.HTTP,
       targets: [
         this.Service.loadBalancerTarget({
