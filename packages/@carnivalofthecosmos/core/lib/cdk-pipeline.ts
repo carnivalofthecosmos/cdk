@@ -1,8 +1,13 @@
 import { Construct, RemovalPolicy, PhysicalName } from '@aws-cdk/core';
 import { Bucket, BucketEncryption } from '@aws-cdk/aws-s3';
 import { IRepository } from '@aws-cdk/aws-codecommit';
-import { Pipeline, Artifact } from '@aws-cdk/aws-codepipeline';
-import { CodeCommitSourceAction, CodeBuildAction, CodeCommitTrigger } from '@aws-cdk/aws-codepipeline-actions';
+import { Pipeline, Artifact, IPipeline, StageOptions } from '@aws-cdk/aws-codepipeline';
+import {
+  CodeCommitSourceAction,
+  CodeBuildAction,
+  CodeCommitTrigger,
+  ManualApprovalAction,
+} from '@aws-cdk/aws-codepipeline-actions';
 import {
   Project,
   BuildSpec,
@@ -11,8 +16,10 @@ import {
   Source,
   Artifacts,
   BuildEnvironmentVariableType,
+  IProject,
 } from '@aws-cdk/aws-codebuild';
 import { IRole } from '@aws-cdk/aws-iam';
+import { IConsumerAppEnv } from './interfaces';
 
 export interface BuildEnvironmentVariables {
   [key: string]: BuildEnvironmentVariable;
@@ -64,7 +71,7 @@ export class CdkPipeline extends Construct {
             },
           },
           pre_build: {
-            commands: ['npm install'],
+            commands: ['npm ci'],
           },
           build: {
             commands: ['npx cdk synth ${STACKS}', 'npx cdk deploy --require-approval=never ${STACKS}'],
@@ -134,3 +141,59 @@ export class CdkPipeline extends Construct {
     });
   }
 }
+
+export const addCdkDeployEnvStageToPipeline = (props: {
+  pipeline: Pipeline;
+  deployProject: IProject;
+  appEnv: IConsumerAppEnv;
+  isManualApprovalRequired?: boolean;
+}) => {
+  const { deployProject, appEnv, pipeline, isManualApprovalRequired = true } = props || {};
+  const projectName = appEnv.Account.Project.Name;
+  const accountName = appEnv.Account.Name;
+  const appEnvName = appEnv.Name;
+
+  let cdkSourceRepoAction = pipeline.stages[0].actions.find(x => x.actionProperties.actionName === 'CdkCheckout');
+  if (!cdkSourceRepoAction) {
+    const cdkRepo = appEnv.Account.Project.Repo;
+    const sourceOutput = new Artifact('CdkOutput');
+    cdkSourceRepoAction = new CodeCommitSourceAction({
+      actionName: 'CdkCheckout',
+      repository: cdkRepo,
+      output: sourceOutput,
+      trigger: CodeCommitTrigger.NONE,
+    });
+    pipeline.stages[0].addAction(cdkSourceRepoAction);
+  }
+
+  const cdkOutputArtifact = (cdkSourceRepoAction?.actionProperties.outputs as Artifact[])[0];
+
+  const deployStage: StageOptions = {
+    stageName: `${accountName}-${appEnvName}`, // TODO: is this confusing ?
+    actions: [
+      new CodeBuildAction({
+        actionName: 'CdkDeploy',
+        project: deployProject,
+        input: cdkOutputArtifact,
+        runOrder: 2,
+        environmentVariables: {
+          STACKS: {
+            type: BuildEnvironmentVariableType.PLAINTEXT,
+            value: `App-${projectName}-${accountName}-${appEnvName}-*`,
+          },
+        },
+      }),
+    ],
+  };
+
+  if (isManualApprovalRequired) {
+    deployStage.actions?.push(
+      new ManualApprovalAction({
+        actionName: 'CdkApproval',
+        runOrder: 1,
+      }),
+    );
+  }
+
+  pipeline.addStage(deployStage);
+};

@@ -1,11 +1,10 @@
-import { Construct, RemovalPolicy, PhysicalName } from '@aws-cdk/core';
+import { Construct, RemovalPolicy } from '@aws-cdk/core';
 import { Bucket, BucketEncryption } from '@aws-cdk/aws-s3';
 import { IRepository } from '@aws-cdk/aws-codecommit';
 import { Pipeline, Artifact } from '@aws-cdk/aws-codepipeline';
 import { CodeCommitSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Project, BuildSpec, LinuxBuildImage, BuildEnvironmentVariable, Source } from '@aws-cdk/aws-codebuild';
 import { IRole } from '@aws-cdk/aws-iam';
-import { AppPipelineBase } from '.';
 
 export interface BuildEnvironmentVariables {
   [key: string]: BuildEnvironmentVariable;
@@ -20,7 +19,7 @@ export interface AppNodePipelineProps {
   buildCommands?: string[];
 }
 
-export class AppNodePipeline extends AppPipelineBase {
+export class AppNodePipeline extends Construct {
   readonly Build: Project;
   readonly Pipeline: Pipeline;
 
@@ -38,7 +37,7 @@ export class AppNodePipeline extends AppPipelineBase {
 
     const artifactBucket = new Bucket(this, 'CodeArtifactBucket', {
       encryption: BucketEncryption.S3_MANAGED,
-      removalPolicy: RemovalPolicy.RETAIN,
+      removalPolicy: RemovalPolicy.RETAIN, // TODO:?
     });
 
     this.Build = new Project(this, 'Build', {
@@ -57,7 +56,7 @@ export class AppNodePipeline extends AppPipelineBase {
             },
           },
           pre_build: {
-            commands: ['npm install'],
+            commands: ['npm ci'],
           },
           build: {
             commands: buildCommands,

@@ -13,7 +13,7 @@ import {
   ApplicationListenerRule,
   ApplicationListenerRuleProps,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IEcsAppEnv, IConsumerEcsAppEnv } from '@carnivalofthecosmos/core';
+import { IConsumerEcsAppEnv } from '@carnivalofthecosmos/core';
 
 export interface EcsServiceProps {
   container: ContainerDefinitionOptions & { port?: PortMapping };
@@ -33,11 +33,12 @@ export class EcsService extends Construct {
   constructor(appEnv: IConsumerEcsAppEnv, id: string, props: EcsServiceProps) {
     super(appEnv, id);
 
-    const projectName = appEnv.Account.Project.Name;
     const { container, service, routing } = props;
+    const projectName = appEnv.Account.Project.Name;
+    const envName = appEnv.Name;
 
     this.TaskDefinition = new Ec2TaskDefinition(this, 'Task', {
-      family: `${projectName}-${id}-Task`,
+      family: `App-${projectName}-${envName}-${id}-Task`,
     });
 
     this.TaskDefinition.addContainer('AppContainer', {
@@ -52,14 +53,15 @@ export class EcsService extends Construct {
     this.Service = new Ec2Service(this, 'Service', {
       desiredCount: 1,
       ...service,
+      serviceName: `App-${projectName}-${envName}-${id}-Service`,
       taskDefinition: this.TaskDefinition,
-      cluster: appEnv.CoreAppEnv.Cluster,
-      serviceName: `${projectName}-${id}-Service`,
+      cluster: appEnv.Core.Cluster,
     });
 
+    const targetGroupName = `${projectName}-${envName}-${id}-TG`;
     const targetGroup = new ApplicationTargetGroup(this, 'ServiceTargetGroup', {
-      vpc: appEnv.CoreAppEnv.Vpc,
-      targetGroupName: `${projectName}-${id}-TargetGroup`,
+      vpc: appEnv.Core.Vpc,
+      targetGroupName: targetGroupName.length <= 32 ? targetGroupName : undefined, // TODO: Add warning for this case
       protocol: ApplicationProtocol.HTTP,
       targets: [
         this.Service.loadBalancerTarget({
@@ -70,7 +72,7 @@ export class EcsService extends Construct {
 
     new ApplicationListenerRule(this, 'ServiceRule', {
       ...routing,
-      listener: appEnv.CoreAppEnv.HttpListener,
+      listener: appEnv.Core.HttpListener,
       targetGroups: [targetGroup],
     });
   }

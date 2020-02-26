@@ -12,28 +12,40 @@ import {
   IApplicationLoadBalancer,
   IApplicationListener,
 } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { IAccount, IEcsAppEnv, RemoteVpc, RemoteZone, RemoteCluster, RemoteAlb, RemoteApplicationListener } from '.';
+import { IProject, Project } from '@aws-cdk/aws-codebuild';
+import {
+  ICoreAccount,
+  ICoreCiCd,
+  RemoteVpc,
+  RemoteZone,
+  RemoteCluster,
+  RemoteAlb,
+  RemoteApplicationListener,
+  CdkPipeline,
+} from '.';
+import { RemoteBuildProject } from './remote';
 
-export interface CiEnvStackProps extends StackProps {
+export interface CiCdStackProps extends StackProps {
   networkBuilder: NetworkBuilder;
 }
 
-export class CiEnvStack extends Stack implements IEcsAppEnv {
-  readonly Account: IAccount;
+export class CiCdStack extends Stack implements ICoreCiCd {
+  readonly Account: ICoreAccount;
   readonly Name: string;
   readonly Vpc: Vpc;
   readonly Zone: HostedZone;
   readonly Cluster: Cluster;
   readonly Alb: ApplicationLoadBalancer;
   readonly HttpListener: ApplicationListener;
+  readonly DeployProject: Project;
 
-  constructor(account: IAccount, props: CiEnvStackProps) {
-    super(account.Project.Scope, `Core-${account.Name}-Ci-Env`);
+  constructor(account: ICoreAccount, props: CiCdStackProps) {
+    super(account.Project.Scope, `Core-${account.Name}-CiCd`);
 
     const { networkBuilder } = props;
 
     this.Account = account;
-    this.Name = 'Ci';
+    this.Name = 'CiCd';
 
     this.Vpc = new Vpc(this, 'Vpc', {
       cidr: networkBuilder.addSubnet(24),
@@ -49,7 +61,7 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
 
     const rootZoneName = this.Account.Project.Zone.zoneName;
     this.Zone = new HostedZone(this, 'Zone', {
-      zoneName: `ci.${rootZoneName}`.toLowerCase(),
+      zoneName: `${this.Name}.${rootZoneName}`.toLowerCase(),
     });
     new ZoneDelegationRecord(this, 'ZoneDelegation', {
       zone: this.Account.Project.Zone,
@@ -83,33 +95,57 @@ export class CiEnvStack extends Stack implements IEcsAppEnv {
       ],
     });
 
+    const pipeline = new CdkPipeline(this, 'CdkPipeline', {
+      name: 'Core-Cdk-Pipeline',
+      cdkRepo: this.Account.Project.Repo,
+      deployEnvs: {
+        NPM_REGISTRY_API_KEY: { value: 'TODO: Key here' },
+      },
+      deployStacks: [`Core-*`],
+    });
+    this.DeployProject = pipeline.Deploy;
+
+    // TODO: get the right roles !!
+    const addBuildManagedPolicy = (name: string) => {
+      pipeline.Deploy.role?.addManagedPolicy({ managedPolicyArn: `arn:aws:iam::aws:policy/${name}` });
+    };
+    // addBuildManagedPolicy('AWSCloudFormationFullAccess');
+    // addBuildManagedPolicy('AmazonRoute53FullAccess');
+    // addBuildManagedPolicy('AmazonECS_FullAccess');
+    // addBuildManagedPolicy('AmazonVPCFullAccess');
+    // addBuildManagedPolicy('AmazonEC2FullAccess');
+    addBuildManagedPolicy('AdministratorAccess'); // FIXME:
+
     RemoteVpc.export(`Core${this.Account.Name}${this.Name}`, this.Vpc);
     RemoteZone.export(`Core${this.Account.Name}${this.Name}`, this.Zone);
     RemoteCluster.export(`Core${this.Account.Name}${this.Name}`, this.Cluster);
     RemoteAlb.export(`Core${this.Account.Name}${this.Name}`, this.Alb);
     RemoteApplicationListener.export(`Core${this.Account.Name}${this.Name}`, this.HttpListener);
+    RemoteBuildProject.export(`Core${this.Account.Name}${this.Name}`, this.DeployProject);
   }
 }
 
-export class ImportedCiEnv extends Construct implements IEcsAppEnv {
-  readonly Account: IAccount;
+export class ImportedCiCd extends Construct implements ICoreCiCd {
+  readonly Account: ICoreAccount;
   readonly Name: string;
   readonly Vpc: IVpc;
   readonly Zone: IHostedZone;
   readonly Cluster: ICluster;
   readonly Alb: IApplicationLoadBalancer;
   readonly HttpListener: IApplicationListener;
+  readonly DeployProject: IProject;
 
-  constructor(scope: Construct, account: IAccount) {
-    super(scope, `Core-${account.Name}-Ci-Env`);
+  constructor(scope: Construct, account: ICoreAccount) {
+    super(scope, `Core-${account.Name}-CiCd`);
 
     this.Account = account;
-    this.Name = 'Ci';
+    this.Name = 'CiCd';
 
     this.Vpc = RemoteVpc.import(this, `Core${this.Account.Name}${this.Name}`, 'Vpc', { hasIsolated: true });
     this.Zone = RemoteZone.import(this, `Core${this.Account.Name}${this.Name}`, 'Zone');
     this.Cluster = RemoteCluster.import(this, `Core${this.Account.Name}${this.Name}`, 'Cluster', this.Vpc);
     this.Alb = RemoteAlb.import(this, `Core${this.Account.Name}${this.Name}`, 'Alb');
     this.HttpListener = RemoteApplicationListener.import(this, `Core${this.Account.Name}${this.Name}`, 'HttpListener');
+    this.DeployProject = RemoteBuildProject.import(this, `Core${this.Account.Name}${this.Name}`, 'CdkPipeline');
   }
 }
