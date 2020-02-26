@@ -56,7 +56,7 @@ export class AppNodePipeline extends Construct {
             },
           },
           pre_build: {
-            commands: ['npm ci'],
+            commands: ['$(aws ecr get-login --no-include-email)', 'npm ci'],
           },
           build: {
             commands: buildCommands,
@@ -66,6 +66,7 @@ export class AppNodePipeline extends Construct {
       environment: {
         buildImage: LinuxBuildImage.STANDARD_3_0,
         environmentVariables: buildEnvs,
+        privileged: true,
       },
     });
 
